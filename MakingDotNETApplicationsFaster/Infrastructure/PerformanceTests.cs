@@ -33,9 +33,39 @@ namespace MakingDotNETApplicationsFaster.Infrastructure
                 }
             }
 
-            foreach (var test in this.OrderBy(t => t.Watch.ElapsedMilliseconds))
+
+            var orderedByElapsedTime = this.OrderBy(t => t.Watch.ElapsedMilliseconds).ToList();
+            var bestTest = orderedByElapsedTime.First();
+            var bestTimeinMilliseconds = bestTest.Watch.ElapsedMilliseconds;
+            var millisecondsCountInOnePercent = bestTimeinMilliseconds / 100.0;
+            foreach (var test in orderedByElapsedTime)
             {
-                Console.WriteLine(test.Name + " took " + test.Watch.ElapsedMilliseconds + "ms");
+                var currentTime = test.Watch.ElapsedMilliseconds;
+                var percentage = (currentTime - bestTimeinMilliseconds) / millisecondsCountInOnePercent;
+
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.Write(currentTime + "ms");
+                Console.ResetColor();
+                Console.Write("\t");
+
+
+                if (percentage > 0.0)
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("(+" + percentage.ToString("F") + "%)");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("(best result)");
+                }
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("\t");
+                Console.Write(test.Name);
+
+                Console.WriteLine(Environment.NewLine);
+                Console.ResetColor();
             }
         }
     }

@@ -23,9 +23,11 @@ namespace MakingDotNETApplicationsFaster
                 {_ => { UnsafeArrayLinearAccess(array); }, "UnsafeArrayLinearAccess"},
 
                 {_ => { GetSumForeach(array); }, "GetSumForeach"},
+                {_ => { GetSumLinq(array); }, "GetSumLinq"},
 
                 {_ => { GetSumOfListFor(list); }, "GetSumOfListFor"},
                 {_ => { GetSumOfListForeach(list); }, "GetSumOfListForeach"},
+                {_ => { GetSumOfListLinq(list); }, "GetSumOfListLinq"},
                 {_ => { GetSumOfIEnumerableForeach(list); }, "GetSumOfIEnumerableForeach"},
 
                 {_ => { GetSumLoopUnrollingArray(array); }, "GetSumLoopUnrollingArray"},
@@ -100,26 +102,36 @@ namespace MakingDotNETApplicationsFaster
             return sum;
         }
 
-        private static long GetSumOfListFor(List<int> array)
+        private static long GetSumLinq(int[] array)
+        {
+            return array.Sum();
+        }
+
+        private static long GetSumOfListFor(List<int> list)
         {
             long sum = 0;
-            for (var i = 0; i < array.Count; i++)
+            for (var i = 0; i < list.Count; i++)
             {
-                sum += array[i];
+                sum += list[i];
             }
 
             return sum;
         }
 
-        private static long GetSumOfListForeach(List<int> array)
+        private static long GetSumOfListForeach(List<int> list)
         {
             long sum = 0;
-            foreach (var val in array)
+            foreach (var val in list)
             {
                 sum += val;
             }
 
             return sum;
+        }
+
+        private static long GetSumOfListLinq(List<int> list)
+        {
+            return list.Sum();
         }
 
         private static long GetSumOfIEnumerableForeach(IEnumerable<int> collection)
@@ -147,15 +159,15 @@ namespace MakingDotNETApplicationsFaster
             return sum;
         }
 
-        private static long GetSumLoopUnrollingList(List<int> array)
+        private static long GetSumLoopUnrollingList(List<int> list)
         {
             long sum = 0;
-            for (var i = 0; i < array.Count - 4; i += 4)
+            for (var i = 0; i < list.Count - 4; i += 4)
             {
-                sum += array[i];
-                sum += array[i + 1];
-                sum += array[i + 2];
-                sum += array[i + 3];
+                sum += list[i];
+                sum += list[i + 1];
+                sum += list[i + 2];
+                sum += list[i + 3];
             }
 
             return sum;

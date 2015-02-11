@@ -11,7 +11,7 @@ namespace MakingDotNETApplicationsFaster
             {
                 {_ => { ReplaceWithoutContains(text); }, "ReplaceWithoutContains"},
                 {_ => { ReplaceWithContains(text); }, "ReplaceWithContains"}
-            }.Run(1000000);
+            }.Run(10000000);
         }
 
         private static string ReplaceWithoutContains(string text)

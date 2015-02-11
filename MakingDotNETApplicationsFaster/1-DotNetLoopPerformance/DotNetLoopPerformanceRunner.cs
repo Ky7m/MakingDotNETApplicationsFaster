@@ -52,7 +52,7 @@ namespace MakingDotNETApplicationsFaster
         {
             long sum = 0;
             var i = array.Length;
-            while (i-- > 0)
+            while (i --> 0)
             {
                 sum += array[i];
             }

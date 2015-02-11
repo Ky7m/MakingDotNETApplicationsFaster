@@ -13,7 +13,7 @@ namespace MakingDotNETApplicationsFaster
             {
                 {_ => { TryCatchInsideInnerLoop(length); }, "TryCatchInsideInnerLoop"},
                 {_ => { TryCatchOutsideInnerLoop(length); }, "TryCatchOutsideInnerLoop"}
-            }.Run(100000);
+            }.Run(1000000);
         }
 
         private static void TryCatchInsideInnerLoop(int length)

@@ -147,7 +147,7 @@ namespace MakingDotNETApplicationsFaster
                 fixed (int* pArray = array)
                 {
                     int* p = pArray;
-                    while (count-- > 0)
+                    while (count --> 0)
                     {
                         *p++ = int.MaxValue - *p;
                         *p++ = int.MaxValue - *p;
@@ -167,7 +167,7 @@ namespace MakingDotNETApplicationsFaster
                     fixed (int* pArray = array[i])
                     {
                         int* p = pArray;
-                        while (count-- > 0)
+                        while (count --> 0)
                         {
                             *p++ = int.MaxValue - *p;
                             *p++ = int.MaxValue - *p;
@@ -183,7 +183,7 @@ namespace MakingDotNETApplicationsFaster
             int count = rows * cols;
             int row = 0;
             int col = 0;
-            while (count-- > 0)
+            while (count --> 0)
             {
                 row = (row + Increment) % rows;
                 col = (col + Increment) % cols;
@@ -196,7 +196,7 @@ namespace MakingDotNETApplicationsFaster
             int count = rows * cols;
             int row = 0;
             int col = 0;
-            while (count-- > 0)
+            while (count --> 0)
             {
                 row = (row + Increment) % rows;
                 col = (col + Increment) % cols;

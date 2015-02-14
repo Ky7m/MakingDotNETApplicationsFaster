@@ -6,7 +6,7 @@ namespace MakingDotNETApplicationsFaster
 {
     internal sealed class DotNetLoopPerformanceRunner : IRunner
     {
-        private const int ArrayLength = 100;
+        private const int ArrayLength = 10000;
         public void Run()
         {
             var array = Enumerable.Range(0, ArrayLength).ToArray();
@@ -34,7 +34,7 @@ namespace MakingDotNETApplicationsFaster
                 {_ => { GetSumLoopUnrollingList(list); }, "GetSumLoopUnrollingList"},
 
                 {_ => { GetSumWithPrecalculatedLength(array); }, "GetSumWithPrecalculatedLength"}
-            }.Run(10000000);
+            }.Run(100000);
         }
 
         private static long BaselineLoop(int[] array)

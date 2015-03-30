@@ -41,10 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="0-AggressiveInlining\AggressiveInliningRunner.cs" />
+    <Compile Include="6-StructEquality\StructEqualityRunner.cs" />
     <Compile Include="5-ReplaceOptimization\ReplaceOptimizationRunner.cs" />
     <Compile Include="4-ExceptionHandlingPerformance\ExceptionHandlingPerformanceRunner.cs" />
     <Compile Include="3-DictionaryPerformance\DictionaryPerformanceRunner.cs" />
     <Compile Include="2-JaggedArraysVersus2DArrays\JaggedArraysVersus2DArraysRunner.cs" />
+    <Compile Include="6-StructEquality\StructWithNoRefType.cs" />
+    <Compile Include="6-StructEquality\StructWithRefType.cs" />
+    <Compile Include="6-StructEquality\StructWithRefTypeAndOverridenEquals.cs" />
     <Compile Include="Infrastructure\PerformanceTest.cs" />
     <Compile Include="Infrastructure\DemoRunner.cs" />
     <Compile Include="Infrastructure\IRunner.cs" />

@@ -15,7 +15,8 @@ namespace MakingDotNETApplicationsFaster
                                                                          {2, new JaggedArraysVersus2DArraysRunner()},
                                                                          {3, new DictionaryPerformanceRunner()},
                                                                          {4, new ExceptionHandlingPerformanceRunner()},
-                                                                         {5, new ReplaceOptimizationRunner()}
+                                                                         {5, new ReplaceOptimizationRunner()},
+                                                                         {6, new StructEqualityRunner()}
                                                                      }))
             {
                DemoRunner.Run(0); 

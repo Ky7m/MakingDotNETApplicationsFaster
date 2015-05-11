@@ -4,7 +4,7 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-    internal sealed class ReplaceOptimizationRunner : IRunner
+    sealed class ReplaceOptimizationRunner : IRunner
     {
         public void Run()
         {
@@ -19,7 +19,7 @@ namespace MakingDotNETApplicationsFaster
             }.Run(1000000);
         }
 
-        private static string ReplaceWithoutContains(string text)
+        static string ReplaceWithoutContains(string text)
         {
             text = text.Replace("<span>Cat ", "<span>Cats ");
             text = text.Replace("<span>Clear ", "<span>Clears ");
@@ -28,7 +28,7 @@ namespace MakingDotNETApplicationsFaster
             return text;
         }
 
-        private static string ReplaceWithContains(string text)
+        static string ReplaceWithContains(string text)
         {
             if (text.Contains("<span>C"))
             {
@@ -43,32 +43,32 @@ namespace MakingDotNETApplicationsFaster
             return text;
         }
 
-		private static string ReplaceUsingRegex(string text)
-		{
-			text = Regex.Replace(text, "<span>Cat ", "<span>Cats ");
-			text = Regex.Replace(text, "<span>Clear ", "<span>Clears ");
-			text = Regex.Replace(text, "<span>Dog ", "<span>Dogs ");
-			text = Regex.Replace(text, "<span>Draw ", "<span>Draws ");
-			return text;
-		}
+        static string ReplaceUsingRegex(string text)
+        {
+            text = Regex.Replace(text, "<span>Cat ", "<span>Cats ");
+            text = Regex.Replace(text, "<span>Clear ", "<span>Clears ");
+            text = Regex.Replace(text, "<span>Dog ", "<span>Dogs ");
+            text = Regex.Replace(text, "<span>Draw ", "<span>Draws ");
+            return text;
+        }
 
-		private static string ReplaceUsingCompiledRegex(string text)
-		{
-			text = Regex.Replace(text, "<span>Cat ", "<span>Cats ", RegexOptions.Compiled);
-			text = Regex.Replace(text, "<span>Clear ", "<span>Clears ", RegexOptions.Compiled);
-			text = Regex.Replace(text, "<span>Dog ", "<span>Dogs ", RegexOptions.Compiled);
-			text = Regex.Replace(text, "<span>Draw ", "<span>Draws ", RegexOptions.Compiled);
-			return text;
-		}
+        static string ReplaceUsingCompiledRegex(string text)
+        {
+            text = Regex.Replace(text, "<span>Cat ", "<span>Cats ", RegexOptions.Compiled);
+            text = Regex.Replace(text, "<span>Clear ", "<span>Clears ", RegexOptions.Compiled);
+            text = Regex.Replace(text, "<span>Dog ", "<span>Dogs ", RegexOptions.Compiled);
+            text = Regex.Replace(text, "<span>Draw ", "<span>Draws ", RegexOptions.Compiled);
+            return text;
+        }
 
-		private static string ReplaceUsingStringBuilder(string text)
-		{
-			var sb = new StringBuilder(text, text.Length);
-			sb = sb.Replace("<span>Cat ", "<span>Cats ");
-			sb = sb.Replace("<span>Clear ", "<span>Clears ");
-			sb = sb.Replace("<span>Dog ", "<span>Dogs ");
-			sb = sb.Replace("<span>Draw ", "<span>Draws ");
-			return sb.ToString();
-		}
-	}
+        static string ReplaceUsingStringBuilder(string text)
+        {
+            var sb = new StringBuilder(text, text.Length);
+            sb = sb.Replace("<span>Cat ", "<span>Cats ");
+            sb = sb.Replace("<span>Clear ", "<span>Clears ");
+            sb = sb.Replace("<span>Dog ", "<span>Dogs ");
+            sb = sb.Replace("<span>Draw ", "<span>Draws ");
+            return sb.ToString();
+        }
+    }
 }

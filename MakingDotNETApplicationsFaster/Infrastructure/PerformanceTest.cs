@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace MakingDotNETApplicationsFaster.Infrastructure
 {
-    internal sealed class PerformanceTest
+    sealed class PerformanceTest
     {
         public static PerformanceTest Create(Action<int> iteration, string name)
         {

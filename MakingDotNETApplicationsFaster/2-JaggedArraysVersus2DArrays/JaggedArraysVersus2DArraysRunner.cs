@@ -3,10 +3,10 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-    internal sealed class JaggedArraysVersus2DArraysRunner : IRunner
+    sealed class JaggedArraysVersus2DArraysRunner : IRunner
     {
-        private const bool ForceFullCollection = true;
-        private const int Increment = 1309;
+        const bool ForceFullCollection = true;
+        const int Increment = 1309;
 
         public void Run()
         {
@@ -45,9 +45,9 @@ namespace MakingDotNETApplicationsFaster
 
         #region Memory Test
 
-        private static int[][] JaggedArrayMemory(int rows, int cols)
+        static int[][] JaggedArrayMemory(int rows, int cols)
         {
-            
+
             long b1 = GC.GetTotalMemory(ForceFullCollection);
             int[][] jagged = new int[rows][];
             for (int i = 0; i < rows; i++)
@@ -60,7 +60,7 @@ namespace MakingDotNETApplicationsFaster
             return jagged;
         }
 
-        private static int[,] TwoDimensionalArrayMemory(int rows, int cols)
+        static int[,] TwoDimensionalArrayMemory(int rows, int cols)
         {
             long b1 = GC.GetTotalMemory(ForceFullCollection);
             int[,] array = new int[rows, cols];
@@ -74,7 +74,7 @@ namespace MakingDotNETApplicationsFaster
 
         #region Performance Test
 
-        private static long GetSumFor2DArray(int[,] array, int rows, int cols)
+        static long GetSumFor2DArray(int[,] array, int rows, int cols)
         {
             long sum = 0;
             for (var i = 0; i < rows; ++i)
@@ -88,7 +88,7 @@ namespace MakingDotNETApplicationsFaster
 
         }
 
-        private static long GetSumForJaggedArray(int[][] jaggedArray, int rows, int cols)
+        static long GetSumForJaggedArray(int[][] jaggedArray, int rows, int cols)
         {
             long sum = 0;
             for (var i = 0; i < rows; ++i)
@@ -102,7 +102,7 @@ namespace MakingDotNETApplicationsFaster
 
         }
 
-        private static long GetSumForJaggedArrayWithCachingTo1DArray(int[][] jaggedArray, int rows, int cols)
+        static long GetSumForJaggedArrayWithCachingTo1DArray(int[][] jaggedArray, int rows, int cols)
         {
             long sum = 0;
             for (var i = 0; i < rows; ++i)
@@ -117,7 +117,7 @@ namespace MakingDotNETApplicationsFaster
 
         }
 
-        private static void Traversal2DArray(int[,] array, int rows, int cols)
+        static void Traversal2DArray(int[,] array, int rows, int cols)
         {
             for (var i = 0; i < rows; ++i)
             {
@@ -128,7 +128,7 @@ namespace MakingDotNETApplicationsFaster
             }
         }
 
-        private static void TraversalJaggedArray(int[][] jaggedArray, int rows, int cols)
+        static void TraversalJaggedArray(int[][] jaggedArray, int rows, int cols)
         {
             for (var i = 0; i < rows; ++i)
             {
@@ -139,7 +139,7 @@ namespace MakingDotNETApplicationsFaster
             }
         }
 
-        private static void OptimizedTraversal2DArray(int[,] array, int rows, int cols)
+        static void OptimizedTraversal2DArray(int[,] array, int rows, int cols)
         {
             long count = (((long)rows) * cols) / 3;
             unsafe
@@ -147,7 +147,7 @@ namespace MakingDotNETApplicationsFaster
                 fixed (int* pArray = array)
                 {
                     int* p = pArray;
-                    while (count --> 0)
+                    while (count-- > 0)
                     {
                         *p++ = int.MaxValue - *p;
                         *p++ = int.MaxValue - *p;
@@ -157,7 +157,7 @@ namespace MakingDotNETApplicationsFaster
             }
         }
 
-        private static void OptimizedTraversalJagged(int[][] array, int rows, int cols)
+        static void OptimizedTraversalJagged(int[][] array, int rows, int cols)
         {
             for (var i = 0; i < rows; ++i)
             {
@@ -167,7 +167,7 @@ namespace MakingDotNETApplicationsFaster
                     fixed (int* pArray = array[i])
                     {
                         int* p = pArray;
-                        while (count --> 0)
+                        while (count-- > 0)
                         {
                             *p++ = int.MaxValue - *p;
                             *p++ = int.MaxValue - *p;
@@ -178,12 +178,12 @@ namespace MakingDotNETApplicationsFaster
             }
         }
 
-        private static void SemiRandomAccess2DArray(int[,] array, int rows, int cols)
+        static void SemiRandomAccess2DArray(int[,] array, int rows, int cols)
         {
             int count = rows * cols;
             int row = 0;
             int col = 0;
-            while (count --> 0)
+            while (count-- > 0)
             {
                 row = (row + Increment) % rows;
                 col = (col + Increment) % cols;
@@ -191,12 +191,12 @@ namespace MakingDotNETApplicationsFaster
             }
         }
 
-        private static void SemiRandomAccessJaggedArray(int[][] array, int rows, int cols)
+        static void SemiRandomAccessJaggedArray(int[][] array, int rows, int cols)
         {
             int count = rows * cols;
             int row = 0;
             int col = 0;
-            while (count --> 0)
+            while (count-- > 0)
             {
                 row = (row + Increment) % rows;
                 col = (col + Increment) % cols;

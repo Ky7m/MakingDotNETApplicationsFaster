@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MakingDotNETApplicationsFaster.Infrastructure
 {
-    internal sealed class PerformanceTests : List<PerformanceTest>
+    sealed class PerformanceTests : List<PerformanceTest>
     {
         public void Add(Action<int> iteration, string name)
         {
@@ -32,7 +32,6 @@ namespace MakingDotNETApplicationsFaster.Infrastructure
                     test.Watch.Stop();
                 }
             }
-
 
             var orderedByElapsedTime = this.OrderBy(t => t.Watch.ElapsedMilliseconds).ToList();
             var bestTest = orderedByElapsedTime.First();

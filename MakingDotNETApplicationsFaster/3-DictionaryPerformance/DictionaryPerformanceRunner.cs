@@ -3,7 +3,7 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-    internal sealed class DictionaryPerformanceRunner : IRunner
+    sealed class DictionaryPerformanceRunner : IRunner
     {
         public void Run()
         {
@@ -23,7 +23,7 @@ namespace MakingDotNETApplicationsFaster
             }.Run(100);
         }
 
-        private static string UsingContainsKey(Dictionary<int,string> dictionary, int size)
+        static string UsingContainsKey(Dictionary<int, string> dictionary, int size)
         {
             string result = string.Empty;
             for (int i = 0; i < size; i++)
@@ -36,7 +36,7 @@ namespace MakingDotNETApplicationsFaster
             return result;
         }
 
-        private static string UsingTryGetValue(Dictionary<int,string> dictionary, int size)
+        static string UsingTryGetValue(Dictionary<int, string> dictionary, int size)
         {
             string result = string.Empty;
             for (int i = 0; i < size; i++)

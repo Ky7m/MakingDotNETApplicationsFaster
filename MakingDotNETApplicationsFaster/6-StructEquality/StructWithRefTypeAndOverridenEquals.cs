@@ -1,6 +1,6 @@
 namespace MakingDotNETApplicationsFaster
 {
-	internal struct StructWithRefTypeAndOverridenEquals
+	struct StructWithRefTypeAndOverridenEquals
 	{
 		public int Age { get; set; }
 		public int Height { get; set; }

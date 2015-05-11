@@ -3,7 +3,7 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-    internal sealed class ExceptionHandlingPerformanceRunner : IRunner
+    sealed class ExceptionHandlingPerformanceRunner : IRunner
     {
         public void Run()
         {
@@ -16,7 +16,7 @@ namespace MakingDotNETApplicationsFaster
             }.Run(1000000);
         }
 
-        private static void TryCatchInsideInnerLoop(int length)
+        static void TryCatchInsideInnerLoop(int length)
         {
             for (int i = 0; i < length; i++)
             {
@@ -28,14 +28,14 @@ namespace MakingDotNETApplicationsFaster
                         throw new Exception();
                     }
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     Console.WriteLine(exception.ToString());
                 }
             }
         }
 
-        private static void TryCatchOutsideInnerLoop(int length)
+        static void TryCatchOutsideInnerLoop(int length)
         {
             try
             {

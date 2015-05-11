@@ -5,7 +5,7 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-    internal sealed class AggressiveInliningRunner : IRunner
+    sealed class AggressiveInliningRunner : IRunner
     {
         public void Run()
         {
@@ -18,57 +18,57 @@ namespace MakingDotNETApplicationsFaster
             }.Run(10000000);
         }
 
-        private static int SmallMethod(int i, int j)
+        static int SmallMethod(int i, int j)
         {
             if (i > j) return i + j;
-            return i + 2*j - 1;
+            return i + 2 * j - 1;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static int InliningLargeMethod(int i, int j)
+        static int InliningLargeMethod(int i, int j)
         {
             if (i + 14 > j)
             {
                 return i + j;
             }
-            if (j*12 < i)
+            if (j * 12 < i)
             {
-                return 42 + i - j*7;
+                return 42 + i - j * 7;
             }
-            return i%14 - j;
+            return i % 14 - j;
         }
 
         //[MethodImpl(MethodImplOptions.NoInlining)]
-        private static int NoInliningLargeMethod(int i, int j)
+        static int NoInliningLargeMethod(int i, int j)
         {
             if (i + 14 > j)
             {
                 return i + j;
             }
-            if (j*12 < i)
+            if (j * 12 < i)
             {
-                return 42 + i - j*7;
+                return 42 + i - j * 7;
             }
-            return i%14 - j;
+            return i % 14 - j;
         }
-		
-		// The attributes on this method are chosen for the best JIT performance. 
-		// Based on a following finding https://github.com/dotnet/coreclr/blob/cbf46fb0b6a0b209ed1caf4a680910b383e68cba/src/mscorlib/src/System/Buffer.cs#L536
-		[SuppressUnmanagedCodeSecurity]
+
+        // The attributes on this method are chosen for the best JIT performance. 
+        // Based on a following finding https://github.com/dotnet/coreclr/blob/cbf46fb0b6a0b209ed1caf4a680910b383e68cba/src/mscorlib/src/System/Buffer.cs#L536
+        [SuppressUnmanagedCodeSecurity]
 		[SecurityCritical]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[CLSCompliant(false)]
-		private static int LargeMethodWithAdditionalAttributes(int i, int j)
+        static int LargeMethodWithAdditionalAttributes(int i, int j)
         {
             if (i + 14 > j)
             {
                 return i + j;
             }
-            if (j*12 < i)
+            if (j * 12 < i)
             {
-                return 42 + i - j*7;
+                return 42 + i - j * 7;
             }
-            return i%14 - j;
+            return i % 14 - j;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MakingDotNETApplicationsFaster.Infrastructure
 {
-    internal interface IRunner
+    interface IRunner
     {
         void Run();
     }

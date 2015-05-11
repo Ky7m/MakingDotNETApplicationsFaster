@@ -2,7 +2,7 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-	internal sealed class StructEqualityRunner : IRunner
+	sealed class StructEqualityRunner : IRunner
 	{
 		public void Run()
 		{
@@ -23,19 +23,19 @@ namespace MakingDotNETApplicationsFaster
 			}.Run(10000000);
 		}
 
-		private static bool CompareStructsWithNoRefTypes(StructWithNoRefType a, StructWithNoRefType b)
-		{
-			return a.Equals(b);
-		}
+        static bool CompareStructsWithNoRefTypes(StructWithNoRefType a, StructWithNoRefType b)
+        {
+            return a.Equals(b);
+        }
 
-		private static bool CompareStructsWithRefTypes(StructWithRefType c, StructWithRefType d)
-		{
-			return c.Equals(d);
-		}
+        static bool CompareStructsWithRefTypes(StructWithRefType c, StructWithRefType d)
+        {
+            return c.Equals(d);
+        }
 
-		private static bool CompareStructsWithRefTypesAndOverridenEquals(StructWithRefTypeAndOverridenEquals x, StructWithRefTypeAndOverridenEquals y)
-		{
-			return x.Equals(y);
-		}
-	}
+        static bool CompareStructsWithRefTypesAndOverridenEquals(StructWithRefTypeAndOverridenEquals x, StructWithRefTypeAndOverridenEquals y)
+        {
+            return x.Equals(y);
+        }
+    }
 }

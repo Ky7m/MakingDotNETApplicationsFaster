@@ -1,6 +1,6 @@
 namespace MakingDotNETApplicationsFaster
 {
-	internal struct StructWithRefType
+	struct StructWithRefType
 	{
 		public int Age { get; set; }
 		public int Height { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace MakingDotNETApplicationsFaster.Infrastructure
 {
-    internal static class DemoRunner
+    static class DemoRunner
     {
-        private static Dictionary<Int16, IRunner> Runners { get; set; }
+        static Dictionary<Int16, IRunner> Runners { get; set; }
 
         static DemoRunner()
         {

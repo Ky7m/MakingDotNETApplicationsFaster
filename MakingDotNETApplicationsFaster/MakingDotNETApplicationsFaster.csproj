@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="0-AggressiveInlining\AggressiveInliningRunner.cs" />
+    <Compile Include="7-ReadOnlyFields\Int256.cs" />
+    <Compile Include="7-ReadOnlyFields\ReadOnlyFieldsRunner.cs" />
     <Compile Include="6-StructEquality\StructEqualityRunner.cs" />
     <Compile Include="5-ReplaceOptimization\ReplaceOptimizationRunner.cs" />
     <Compile Include="4-ExceptionHandlingPerformance\ExceptionHandlingPerformanceRunner.cs" />

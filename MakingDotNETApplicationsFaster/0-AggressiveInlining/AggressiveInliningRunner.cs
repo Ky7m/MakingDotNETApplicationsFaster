@@ -57,7 +57,6 @@ namespace MakingDotNETApplicationsFaster
         [SuppressUnmanagedCodeSecurity]
 		[SecurityCritical]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[CLSCompliant(false)]
         static int LargeMethodWithAdditionalAttributes(int i, int j)
         {
             if (i + 14 > j)

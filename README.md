@@ -2,3 +2,5 @@ Making .NET Applications Faster   [![Build status](https://ci.appveyor.com/api/p
 ==============================
 
 Some quick and sometimes dirty C# code to evaluate the performance difference between various approaches.
+
+Require Visual Studio 2015 to run examples.

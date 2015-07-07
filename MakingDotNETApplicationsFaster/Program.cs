@@ -4,9 +4,9 @@ using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
 {
-    static class MakingDotNetApplicationsFasterProgram
+    public class Program
     {
-        static void Main()
+        public void Main(string[] args)
         {
             if (DemoRunner.TryAddRunners(new Dictionary<Int16, IRunner>
             {

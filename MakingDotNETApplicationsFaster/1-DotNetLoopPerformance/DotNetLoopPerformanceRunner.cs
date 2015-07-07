@@ -19,8 +19,8 @@ namespace MakingDotNETApplicationsFaster
 
                 {_ => { GetSumWhile(array); }, "GetSumWhile"},
 
-                {_ => { UnsafeArrayLinearAccessWithPointerIncrement(array); }, "UnsafeArrayLinearAccessWithPointerIncrement"},
-                {_ => { UnsafeArrayLinearAccess(array); }, "UnsafeArrayLinearAccess"},
+               /* {_ => { UnsafeArrayLinearAccessWithPointerIncrement(array); }, "UnsafeArrayLinearAccessWithPointerIncrement"},
+                {_ => { UnsafeArrayLinearAccess(array); }, "UnsafeArrayLinearAccess"},*/
 
                 {_ => { GetSumForeach(array); }, "GetSumForeach"},
                 {_ => { GetSumLinq(array); }, "GetSumLinq"},
@@ -60,7 +60,7 @@ namespace MakingDotNETApplicationsFaster
 
         }
 
-        unsafe static long UnsafeArrayLinearAccessWithPointerIncrement(int[] array)
+      /*  unsafe static long UnsafeArrayLinearAccessWithPointerIncrement(int[] array)
         {
             long sum = 0;
             fixed (int* pointer = &array[0])
@@ -90,7 +90,7 @@ namespace MakingDotNETApplicationsFaster
             }
 
             return sum;
-        }
+        }*/
 
         static long GetSumForeach(int[] array)
         {

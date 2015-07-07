@@ -54,7 +54,6 @@ namespace MakingDotNETApplicationsFaster
 
         // The attributes on this method are chosen for the best JIT performance. 
         // Based on a following finding https://github.com/dotnet/coreclr/blob/cbf46fb0b6a0b209ed1caf4a680910b383e68cba/src/mscorlib/src/System/Buffer.cs#L536
-        [SuppressUnmanagedCodeSecurity]
 		[SecurityCritical]
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
         static int LargeMethodWithAdditionalAttributes(int i, int j)

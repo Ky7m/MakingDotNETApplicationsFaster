@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster
@@ -8,7 +7,7 @@ namespace MakingDotNETApplicationsFaster
     {
         public void Main(string[] args)
         {
-            if (DemoRunner.TryAddRunners(new Dictionary<Int16, IRunner>
+            if (DemoRunner.TryAddRunners(new Dictionary<short, IRunner>
             {
                 {0, new AggressiveInliningRunner()},
                 {1, new DotNetLoopPerformanceRunner()},

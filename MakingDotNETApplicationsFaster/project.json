@@ -4,6 +4,8 @@
         "warningsAsErrors": true,
         "allowUnsafe": true
     },
+    "code": ["**\\*.cs"],
+    
     "description": "",
     "authors": [ "" ],
     "tags": [ "" ],

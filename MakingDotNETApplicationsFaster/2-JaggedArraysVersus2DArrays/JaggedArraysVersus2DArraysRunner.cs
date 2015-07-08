@@ -35,8 +35,8 @@ namespace MakingDotNETApplicationsFaster
                 {_ => { Traversal2DArray(array,rows,cols); }, "Traversal2DArray"},
                 {_ => { TraversalJaggedArray(jaggedArray,rows,cols); }, "TraversalJaggedArray"},
 
-              /*  {_ => { OptimizedTraversal2DArray(array,rows,cols); }, "OptimizedTraversal2DArray"},
-                {_ => { OptimizedTraversalJagged(jaggedArray,rows,cols); }, "OptimizedTraversalJagged"},*/
+                {_ => { OptimizedTraversal2DArray(array,rows,cols); }, "OptimizedTraversal2DArray"},
+                {_ => { OptimizedTraversalJagged(jaggedArray,rows,cols); }, "OptimizedTraversalJagged"},
 
                 {_ => { SemiRandomAccess2DArray(array,rows,cols); }, "SemiRandomAccess2DArray"},
                 {_ => { SemiRandomAccessJaggedArray(jaggedArray,rows,cols); }, "SemiRandomAccessJaggedArray"}
@@ -139,7 +139,7 @@ namespace MakingDotNETApplicationsFaster
             }
         }
 
-      /*  static void OptimizedTraversal2DArray(int[,] array, int rows, int cols)
+        static void OptimizedTraversal2DArray(int[,] array, int rows, int cols)
         {
             long count = (((long)rows) * cols) / 3;
             unsafe
@@ -176,7 +176,7 @@ namespace MakingDotNETApplicationsFaster
                     }
                 }
             }
-        }*/
+        }
 
         static void SemiRandomAccess2DArray(int[,] array, int rows, int cols)
         {

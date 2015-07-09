@@ -15,7 +15,7 @@
     },
 
     "commands": {
-        "MakingDotNETApplicationsFaster": "MakingDotNETApplicationsFaster"
+        "run": "MakingDotNETApplicationsFaster"
     },
 
     "frameworks": {

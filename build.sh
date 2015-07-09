@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 if test `uname` = Darwin; then
     cachedir=~/Library/Caches/KBuild
@@ -27,12 +27,4 @@ if test ! -d packages/KoreBuild; then
     mono .nuget/nuget.exe install Sake -version 0.2 -o packages -ExcludeVersion
 fi
 
-if ! type dnvm > /dev/null 2>&1; then
-    source packages/KoreBuild/build/dnvm.sh
-fi
-
-if ! type dnx > /dev/null 2>&1; then
-    dnvm upgrade
-fi
-
-mono packages/Sake/tools/Sake.exe -I packages/KoreBuild/build -f makefile.shade "$@"
+mono packages/Sake/tools/Sake.exe -I packages/KoreBuild/build -I build -f makefile.shade "$@"

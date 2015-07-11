@@ -16,7 +16,8 @@ namespace MakingDotNETApplicationsFaster
                 {4, new ExceptionHandlingPerformanceRunner()},
                 {5, new ReplaceOptimizationRunner()},
                 {6, new StructEqualityRunner()},
-                {7, new ReadOnlyFieldsRunner()}
+                {7, new ReadOnlyFieldsRunner()},
+                {8, new CompareStringsRunner() }
             }))
             {
                 DemoRunner.Run(0);

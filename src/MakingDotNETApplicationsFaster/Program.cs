@@ -20,7 +20,7 @@ namespace MakingDotNETApplicationsFaster
                 {8, new CompareStringsRunner() }
             }))
             {
-                DemoRunner.Run(6);
+                DemoRunner.Run(0);
             }
         }
     }

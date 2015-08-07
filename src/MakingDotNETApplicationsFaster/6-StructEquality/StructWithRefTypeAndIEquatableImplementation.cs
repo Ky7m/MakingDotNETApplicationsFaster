@@ -15,14 +15,14 @@ namespace MakingDotNETApplicationsFaster
 
         public override bool Equals(object obj)
         {
-            if (!(obj is StructWithRefTypeAndOverridenEquals))
+            if (!(obj is StructWithRefTypeAndEquatableImplementation))
             {
                 return false;
             }
 
-            var other = (StructWithRefTypeAndOverridenEquals)obj;
+            var other = (StructWithRefTypeAndEquatableImplementation)obj;
 
-            return Age == other.Age && Height == other.Height && Name == other.Name;
+            return Equals(other);
         }
 
         public override int GetHashCode()

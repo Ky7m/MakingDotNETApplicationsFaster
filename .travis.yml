@@ -6,5 +6,10 @@ addons:
   apt:
     packages:
     - zsh
+env:
+  - MONO_THREADS_PER_CPU=2000
+os:
+  - linux
+  - osx
 script:
-  - ./build.sh verify
+  - ./build.sh --quiet verify

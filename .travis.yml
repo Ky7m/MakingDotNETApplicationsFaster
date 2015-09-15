@@ -2,12 +2,6 @@ language: csharp
 sudo: false
 before_script:
  - chmod +x build.sh
-addons:
-  apt:
-    packages:
-    - zsh
-env:
-  - MONO_THREADS_PER_CPU=2000
 os:
   - linux
   - osx

@@ -7,9 +7,7 @@ os:
   - osx
 addons:
 apt:
-  sources:
-  - debian-sid
   packages:
-  - libunwind8
+  - zsh
 script:
   - ./build.sh --quiet verify

@@ -17,10 +17,11 @@ namespace MakingDotNETApplicationsFaster
                 {5, new ReplaceOptimizationRunner()},
                 {6, new StructEqualityRunner()},
                 {7, new ReadOnlyFieldsRunner()},
-                {8, new CompareStringsRunner() }
+                {8, new CompareStringsRunner()},
+                {9, new SIMDRunner()}
             }))
             {
-                DemoRunner.Run(0);
+                DemoRunner.Run(9);
             }
         }
     }

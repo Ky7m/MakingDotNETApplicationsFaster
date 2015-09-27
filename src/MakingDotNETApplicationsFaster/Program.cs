@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MakingDotNETApplicationsFaster.Infrastructure;
+using Microsoft.Framework.ConfigurationModel;
 
 namespace MakingDotNETApplicationsFaster
 {
@@ -7,6 +8,11 @@ namespace MakingDotNETApplicationsFaster
     {
         public void Main(string[] args)
         {
+            // load configuration
+            var configuration = new Configuration();
+            configuration.AddEnvironmentVariables();
+            configuration.AddCommandLine(args);
+      
             if (DemoRunner.TryAddRunners(new Dictionary<short, IRunner>
             {
                 {0, new AggressiveInliningRunner()},
@@ -21,7 +27,7 @@ namespace MakingDotNETApplicationsFaster
                 {9, new SIMDRunner()}
             }))
             {
-                DemoRunner.Run(9);
+                DemoRunner.Run(0);
             }
         }
     }

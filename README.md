@@ -11,6 +11,5 @@ Some quick and sometimes dirty C# code to evaluate the performance difference be
 Require Visual Studio Code or Visual Studio 2015 to run examples.
 
 ### ToDos:
-*  Fix build.sh
 *  Add unit tests to run all examples
 *  Save all results and publish to the repository

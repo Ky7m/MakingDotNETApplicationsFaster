@@ -9,7 +9,6 @@ namespace MakingDotNETApplicationsFaster
     {
         public void Main(string[] args)
         {
-            // load configuration
             var configuration = new Configuration();
             configuration.AddEnvironmentVariables();
             configuration.AddCommandLine(args);
@@ -27,11 +26,13 @@ namespace MakingDotNETApplicationsFaster
                 {8, new CompareStringsRunner()},
                 {9, new SIMDRunner()}
             };
+
             if (!DemoRunner.TryAddRunners(runnersMap))
             {
                 Console.WriteLine("Cannot initialize tests.");
                 return;
             }
+
             string testIdValue;
             if (configuration.TryGet("TestId", out testIdValue))
             {

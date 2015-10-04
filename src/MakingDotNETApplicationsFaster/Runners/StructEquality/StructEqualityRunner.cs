@@ -1,6 +1,6 @@
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.StructEquality
 {
     sealed class StructEqualityRunner : IRunner
     {

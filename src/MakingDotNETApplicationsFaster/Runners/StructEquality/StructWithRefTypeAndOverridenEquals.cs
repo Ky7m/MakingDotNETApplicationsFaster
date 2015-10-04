@@ -1,4 +1,4 @@
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.StructEquality
 {
 	struct StructWithRefTypeAndOverridenEquals
 	{

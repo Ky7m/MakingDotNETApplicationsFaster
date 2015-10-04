@@ -1,4 +1,4 @@
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.ReadOnlyFields
 {
     public struct Int256
     {

@@ -1,6 +1,6 @@
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.ReadOnlyFields
 {
     sealed class ReadOnlyFieldsRunner : IRunner
     {

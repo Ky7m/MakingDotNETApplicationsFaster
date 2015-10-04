@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.SIMD
 {
     struct CustomVector
     {

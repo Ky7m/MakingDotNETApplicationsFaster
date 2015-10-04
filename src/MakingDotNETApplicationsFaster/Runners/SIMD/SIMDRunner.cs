@@ -1,7 +1,7 @@
 using System.Numerics;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.SIMD
 {
     sealed class SIMDRunner : IRunner
     {

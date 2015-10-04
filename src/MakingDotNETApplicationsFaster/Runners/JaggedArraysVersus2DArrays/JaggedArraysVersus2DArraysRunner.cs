@@ -1,7 +1,7 @@
 using System;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 {
     sealed class JaggedArraysVersus2DArraysRunner : IRunner
     {

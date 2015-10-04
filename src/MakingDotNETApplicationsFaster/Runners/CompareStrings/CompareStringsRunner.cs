@@ -1,7 +1,7 @@
 using System;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.CompareStrings
 {
     sealed class CompareStringsRunner : IRunner
     {
@@ -75,11 +75,13 @@ namespace MakingDotNETApplicationsFaster
         }
         static bool StringCompare(string a1, string a2, string b1, string b2, string c1, string c2)
         {
+#pragma warning disable RECS0119 // Warns when a culture-aware 'Compare' call is used by default
             return string.Compare(a1, a2) == 0 &&
                 string.Compare(b1, b2) == 0 &&
                 string.Compare(c1, c2) == 0 &&
                 string.Compare(a1, c1) == 0 &&
                 string.Compare(b2, c2) == 0;
+#pragma warning restore RECS0119 // Warns when a culture-aware 'Compare' call is used by default
         }
         static bool StringCompareOrdinal(string a1, string a2, string b1, string b2, string c1, string c2)
         {
@@ -91,11 +93,14 @@ namespace MakingDotNETApplicationsFaster
         }
         static bool StringCompareIgnoreCase(string a1, string a2, string b1, string b2, string c1, string c2)
         {
+#pragma warning disable RECS0119
             return string.Compare(a1, a2, true) == 0 &&
+
                 string.Compare(b1, b2, true) == 0 &&
                 string.Compare(c1, c2, true) == 0 &&
                 string.Compare(a1, c1, true) == 0 &&
                 string.Compare(b2, c2, true) == 0;
+#pragma warning restore RECS0119
         }
         static bool EqualsCurrentCulture(string a1, string a2, string b1, string b2, string c1, string c2)
         {
@@ -165,11 +170,13 @@ namespace MakingDotNETApplicationsFaster
 
         static bool CompareTo(string a1, string a2, string b1, string b2, string c1, string c2)
         {
+#pragma warning disable RECS0064 // Warns when a culture-aware 'string.CompareTo' call is used by default
             return a1.CompareTo(a2) == 0 &&
                 b1.CompareTo(b2) == 0 &&
                 c1.CompareTo(c2) == 0 &&
                 a1.CompareTo(c1) == 0 &&
                 b2.CompareTo(c2) == 0;
+#pragma warning restore RECS0064 // Warns when a culture-aware 'string.CompareTo' call is used by default
         }
     }
 }

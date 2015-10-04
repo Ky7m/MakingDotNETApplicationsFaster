@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
 {
     sealed class DotNetLoopPerformanceRunner : IRunner
     {

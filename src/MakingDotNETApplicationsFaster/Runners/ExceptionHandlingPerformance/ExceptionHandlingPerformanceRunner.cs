@@ -1,7 +1,7 @@
 using System;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
 {
     sealed class ExceptionHandlingPerformanceRunner : IRunner
     {

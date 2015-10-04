@@ -1,6 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using MakingDotNETApplicationsFaster.Infrastructure;
+using MakingDotNETApplicationsFaster.Runners.AggressiveInlining;
+using MakingDotNETApplicationsFaster.Runners.CompareStrings;
+using MakingDotNETApplicationsFaster.Runners.DictionaryPerformance;
+using MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance;
+using MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance;
+using MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays;
+using MakingDotNETApplicationsFaster.Runners.ReadOnlyFields;
+using MakingDotNETApplicationsFaster.Runners.ReplaceOptimization;
+using MakingDotNETApplicationsFaster.Runners.SIMD;
+using MakingDotNETApplicationsFaster.Runners.StructEquality;
 using Microsoft.Framework.ConfigurationModel;
 
 namespace MakingDotNETApplicationsFaster

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.DictionaryPerformance
 {
     sealed class DictionaryPerformanceRunner : IRunner
     {

@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using MakingDotNETApplicationsFaster.Infrastructure;
 
-namespace MakingDotNETApplicationsFaster
+namespace MakingDotNETApplicationsFaster.Runners.AggressiveInlining
 {
     sealed class AggressiveInliningRunner : IRunner
     {

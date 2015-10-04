@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MakingDotNETApplicationsFaster.Infrastructure;
 using MakingDotNETApplicationsFaster.Runners.AggressiveInlining;
 using MakingDotNETApplicationsFaster.Runners.CompareStrings;
@@ -12,6 +11,7 @@ using MakingDotNETApplicationsFaster.Runners.ReplaceOptimization;
 using MakingDotNETApplicationsFaster.Runners.SIMD;
 using MakingDotNETApplicationsFaster.Runners.StructEquality;
 using Microsoft.Framework.ConfigurationModel;
+using static System.Console;
 
 namespace MakingDotNETApplicationsFaster
 {
@@ -39,7 +39,7 @@ namespace MakingDotNETApplicationsFaster
 
             if (!DemoRunner.TryAddRunners(runnersMap))
             {
-                Console.WriteLine("Cannot initialize tests.");
+                WriteLine("Cannot initialize tests.");
                 return;
             }
 
@@ -56,17 +56,17 @@ namespace MakingDotNETApplicationsFaster
                     }
                     else
                     {
-                        Console.WriteLine($"{testIdValue} is not registered. Please specify correct number from 0 to {maxRegisteredTestId}.");
+                        WriteLine($"{testIdValue} is not registered. Please specify correct number from 0 to {maxRegisteredTestId}.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"{testIdValue} is not correct value. Please specify correct number from 0 to {maxRegisteredTestId}.");
+                    WriteLine($"{testIdValue} is not correct value. Please specify correct number from 0 to {maxRegisteredTestId}.");
                 }
             }
             else
             {
-                Console.WriteLine("Please use parameter TestId to specify test.");
+                WriteLine("Please use parameter TestId to specify test.");
             }
         }
     }

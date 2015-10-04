@@ -567,7 +567,7 @@
     },
     "System.ComponentModel/4.0.0-beta-22816": {
       "type": "package",
-      "sha512": "XLcSvVsb7/lj68LSjmX834BKxOXspQ7HRSgTiToz4LWKbEvGgZwXHPDUWNo0UbjDFSBsxprYc0PCVygXwhOIMw==",
+      "sha512": "TX8lTOzeCNocpE5I197CwwgrpWLn99oriw1hOTYVT/9E+QSWIAco6MJBT9KT0W35I24yqihwFL+YxWJL32kBhg==",
       "files": [
         "lib/aspnetcore50/System.ComponentModel.dll",
         "lib/contract/System.ComponentModel.dll",
@@ -752,7 +752,7 @@
     },
     "System.IO.FileSystem/4.0.0-beta-22816": {
       "type": "package",
-      "sha512": "Xj6YespEa1Rfm7WO6mV572lvtpJTvKjJJMWmxS80qEeMsUiHQvVq4+lhv4ZJp++0nSqBMKcXGgwLXrDswcJiBQ==",
+      "sha512": "PcJ9xwnx7PmUaE5aqAGX0GKzkmmYpGfMzruT1Vfx9XIaFGsVm223ky0/FrKzUc5TYKN4MTfFp8GAooA+I0KMDA==",
       "files": [
         "lib/aspnetcore50/System.IO.FileSystem.dll",
         "lib/contract/System.IO.FileSystem.dll",

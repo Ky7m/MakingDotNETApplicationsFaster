@@ -11,7 +11,7 @@ namespace MakingDotNETApplicationsFaster.Runners.DictionaryPerformance
 
             var dictionary = new Dictionary<int, string>();
 
-            for (int i = 0; i < size; i++)
+            for (var i = 0; i < size; i++)
             {
                 dictionary.Add(i, i.ToString());
             }
@@ -25,8 +25,8 @@ namespace MakingDotNETApplicationsFaster.Runners.DictionaryPerformance
 
         static string UsingContainsKey(Dictionary<int, string> dictionary, int size)
         {
-            string result = string.Empty;
-            for (int i = 0; i < size; i++)
+            var result = string.Empty;
+            for (var i = 0; i < size; i++)
             {
                 if (dictionary.ContainsKey(i))
                 {
@@ -38,8 +38,8 @@ namespace MakingDotNETApplicationsFaster.Runners.DictionaryPerformance
 
         static string UsingTryGetValue(Dictionary<int, string> dictionary, int size)
         {
-            string result = string.Empty;
-            for (int i = 0; i < size; i++)
+            var result = string.Empty;
+            for (var i = 0; i < size; i++)
             {
                 dictionary.TryGetValue(i, out result);
             }

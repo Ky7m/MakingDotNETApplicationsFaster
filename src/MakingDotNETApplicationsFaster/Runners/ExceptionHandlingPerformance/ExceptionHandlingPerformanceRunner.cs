@@ -18,11 +18,11 @@ namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
 
         static void TryCatchInsideInnerLoop(int length)
         {
-            for (int i = 0; i < length; i++)
+            for (var i = 0; i < length; i++)
             {
                 try
                 {
-                    int value = i * 100;
+                    var value = i * 100;
                     if (value == -1)
                     {
                         throw new Exception();
@@ -39,9 +39,9 @@ namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
         {
             try
             {
-                for (int i = 0; i < length; i++)
+                for (var i = 0; i < length; i++)
                 {
-                    int value = i * 100;
+                    var value = i * 100;
                     if (value == -1)
                     {
                         throw new Exception();

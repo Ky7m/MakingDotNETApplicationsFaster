@@ -17,13 +17,13 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
             GC.WaitForPendingFinalizers();
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
 
-            int[][] jaggedArray = JaggedArrayMemory(rows, cols);
+            var jaggedArray = JaggedArrayMemory(rows, cols);
 
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
             GC.WaitForPendingFinalizers();
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
 
-            int[,] array = TwoDimensionalArrayMemory(rows, cols);
+            var array = TwoDimensionalArrayMemory(rows, cols);
 
             new PerformanceTests
             {
@@ -48,13 +48,13 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
         static int[][] JaggedArrayMemory(int rows, int cols)
         {
 
-            long b1 = GC.GetTotalMemory(ForceFullCollection);
-            int[][] jagged = new int[rows][];
-            for (int i = 0; i < rows; i++)
+            var b1 = GC.GetTotalMemory(ForceFullCollection);
+            var jagged = new int[rows][];
+            for (var i = 0; i < rows; i++)
             {
                 jagged[i] = new int[cols];
             }
-            long b2 = GC.GetTotalMemory(ForceFullCollection);
+            var b2 = GC.GetTotalMemory(ForceFullCollection);
             jagged[0][0] = 0;
             Console.WriteLine("{0} bytes (jagged {1} x {2})", b2 - b1, rows, cols);
             return jagged;
@@ -62,9 +62,9 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 
         static int[,] TwoDimensionalArrayMemory(int rows, int cols)
         {
-            long b1 = GC.GetTotalMemory(ForceFullCollection);
-            int[,] array = new int[rows, cols];
-            long b2 = GC.GetTotalMemory(ForceFullCollection);
+            var b1 = GC.GetTotalMemory(ForceFullCollection);
+            var array = new int[rows, cols];
+            var b2 = GC.GetTotalMemory(ForceFullCollection);
             array[0, 0] = 0;
             Console.WriteLine("{0} bytes (2D {1} x {2})", b2 - b1, rows, cols);
             return array;
@@ -141,12 +141,12 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 
         static void OptimizedTraversal2DArray(int[,] array, int rows, int cols)
         {
-            long count = (((long)rows) * cols) / 3;
+            var count = (((long)rows) * cols) / 3;
             unsafe
             {
                 fixed (int* pArray = array)
                 {
-                    int* p = pArray;
+                    var p = pArray;
                     while (count-- > 0)
                     {
                         *p++ = int.MaxValue - *p;
@@ -163,10 +163,10 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
             {
                 unsafe
                 {
-                    int count = cols / 3;
+                    var count = cols / 3;
                     fixed (int* pArray = array[i])
                     {
-                        int* p = pArray;
+                        var p = pArray;
                         while (count-- > 0)
                         {
                             *p++ = int.MaxValue - *p;
@@ -180,9 +180,9 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 
         static void SemiRandomAccess2DArray(int[,] array, int rows, int cols)
         {
-            int count = rows * cols;
-            int row = 0;
-            int col = 0;
+            var count = rows * cols;
+            var row = 0;
+            var col = 0;
             while (count-- > 0)
             {
                 row = (row + Increment) % rows;
@@ -193,9 +193,9 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 
         static void SemiRandomAccessJaggedArray(int[][] array, int rows, int cols)
         {
-            int count = rows * cols;
-            int row = 0;
-            int col = 0;
+            var count = rows * cols;
+            var row = 0;
+            var col = 0;
             while (count-- > 0)
             {
                 row = (row + Increment) % rows;

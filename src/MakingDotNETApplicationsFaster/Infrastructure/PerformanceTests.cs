@@ -23,7 +23,7 @@ namespace MakingDotNETApplicationsFaster.Infrastructure
             }
 
             var rand = new Random();
-            for (int i = 1; i <= iterations; i++)
+            for (var i = 1; i <= iterations; i++)
             {
                 foreach (var test in this.OrderBy(ignore => rand.Next()))
                 {
@@ -43,10 +43,9 @@ namespace MakingDotNETApplicationsFaster.Infrastructure
                 var percentage = (currentTime - bestTimeinMilliseconds) / millisecondsCountInOnePercent;
 
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.Write(currentTime + "ms");
+                Console.Write(currentTime.ToString() + "ms");
                 Console.ResetColor();
                 Console.Write("\t");
-
 
                 if (percentage > 0.0)
                 {

@@ -65,9 +65,9 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             long sum = 0;
             fixed (int* pointer = &array[0])
             {
-                int* current = pointer;
+                var current = pointer;
 
-                for (int i = 0; i < array.Length; ++i)
+                for (var i = 0; i < array.Length; ++i)
                 {
                     sum += *(current++);
                 }
@@ -81,9 +81,9 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             long sum = 0;
             fixed (int* pointer = &array[0])
             {
-                int* current = pointer;
+                var current = pointer;
 
-                for (int i = 0; i < array.Length; ++i)
+                for (var i = 0; i < array.Length; ++i)
                 {
                     sum += *(current + i);
                 }

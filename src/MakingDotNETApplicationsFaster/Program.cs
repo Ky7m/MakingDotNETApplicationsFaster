@@ -24,7 +24,7 @@ namespace MakingDotNETApplicationsFaster
             configuration.AddEnvironmentVariables();
             configuration.AddCommandLine(args);
 
-            var runnersMap = new Dictionary<short, IRunner>
+            var runnersMap = new Dictionary<int, IRunner>
             {
                 [0] = new AggressiveInliningRunner(),
                 [1] = new DotNetLoopPerformanceRunner(),
@@ -45,11 +45,13 @@ namespace MakingDotNETApplicationsFaster
                 return;
             }
 
+            var maxRegisteredTestId = runnersMap.Count - 1;
+
             string testIdValue;
             if (configuration.TryGet("TestId", out testIdValue))
             {
                 short testId;
-                var maxRegisteredTestId = runnersMap.Count - 1;
+               
                 if (short.TryParse(testIdValue, out testId))
                 {
                     if (runnersMap.ContainsKey(testId))
@@ -68,7 +70,7 @@ namespace MakingDotNETApplicationsFaster
             }
             else
             {
-                WriteLine("Please use parameter TestId to specify test.");
+                DemoRunner.Run(maxRegisteredTestId);
             }
         }
     }

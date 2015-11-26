@@ -11,18 +11,20 @@
     "commands": {
         "run": "MakingDotNETApplicationsFaster"
     },
-    "frameworks": {
-        "dnxcore50": {
-            "dependencies": {
-                "System.Collections": "4.0.11-beta-23225",
-                "System.Linq": "4.0.1-beta-23225",
-                "System.Threading": "4.0.11-beta-23225",
-                "Microsoft.CSharp": "4.0.1-beta-23225",
-                "System.Console": "4.0.0-beta-23302",
-                "System.Text.RegularExpressions": "4.0.11-beta-23225",
-                "System.Numerics.Vectors": "4.1.1-beta-23225",
-                "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4"
-            }
-        }
+  "frameworks": {
+    "dnxcore50": {
+      "dependencies": {
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Console": "4.0.0-beta-23516",
+        "System.Text.RegularExpressions": "4.0.11-beta-23516",
+        "System.Numerics.Vectors": "4.1.1-beta-23516",
+        "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4"
+      }
     }
+  },
+  "dependencies": {
+    "System.Threading": "4.0.11-beta-23516"
+  }
 }

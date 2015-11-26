@@ -16,9 +16,9 @@ using static System.Console;
 
 namespace MakingDotNETApplicationsFaster
 {
-    public class Program
+    public static  class Program
     {
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
             var configuration = new Configuration();
             configuration.AddEnvironmentVariables();

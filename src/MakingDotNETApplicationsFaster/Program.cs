@@ -5,6 +5,7 @@ using MakingDotNETApplicationsFaster.Runners.CompareStrings;
 using MakingDotNETApplicationsFaster.Runners.DictionaryPerformance;
 using MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance;
 using MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance;
+using MakingDotNETApplicationsFaster.Runners.FastMemberPerformance;
 using MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays;
 using MakingDotNETApplicationsFaster.Runners.LinqMethods;
 using MakingDotNETApplicationsFaster.Runners.ReadOnlyFields;
@@ -36,7 +37,8 @@ namespace MakingDotNETApplicationsFaster
                 [7] = new ReadOnlyFieldsRunner(),
                 [8] = new CompareStringsRunner(),
                 [9] = new SIMDRunner(),
-                [10] = new LinqMethodsRunner()
+                [10] = new LinqMethodsRunner(),
+                [11] = new FastMemberPerformanceRunner()
             };
 
             if (!DemoRunner.TryAddRunners(runnersMap))

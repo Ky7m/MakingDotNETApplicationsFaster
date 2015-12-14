@@ -1,13 +1,14 @@
 language: csharp
-sudo: false
+sudo: required
+dist: trusty
 before_script:
  - chmod +x build.sh
 os:
   - linux
-  - osx
+# - osx CoreCLR does not support OS X 10.9 (yet)
 addons:
-apt:
-  packages:
-  - zsh
+  apt:
+    packages:
+    - zsh
 script:
   - ./build.sh --quiet verify

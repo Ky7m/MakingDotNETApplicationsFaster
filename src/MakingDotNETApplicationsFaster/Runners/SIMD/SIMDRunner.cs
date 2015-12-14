@@ -9,7 +9,7 @@ namespace MakingDotNETApplicationsFaster.Runners.SIMD
         public void Run()
         {
             var rand = new Random();
-            const int size = 1024 * 1024;
+            const int size = 1024;
 
             var a = new double[size];
             var b = new double[size];
@@ -22,8 +22,8 @@ namespace MakingDotNETApplicationsFaster.Runners.SIMD
             new PerformanceTests
             {
                 {_ => NativeImplementation(a, b), "NativeImplementation"},
-                {_ => NumericsVectorImplementation(a, b), "MultiplyVector"}
-            }.Run(1000);
+                {_ => NumericsVectorImplementation(a, b), "NumericsVectorImplementation"}
+            }.Run(10000000);
         }
 
         static double NativeImplementation(double[] a, double[] b)

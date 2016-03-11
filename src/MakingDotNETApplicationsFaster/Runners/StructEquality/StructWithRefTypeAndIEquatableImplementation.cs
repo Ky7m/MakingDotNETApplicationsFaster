@@ -2,7 +2,7 @@ using System;
 
 namespace MakingDotNETApplicationsFaster.Runners.StructEquality
 {
-    struct StructWithRefTypeAndEquatableImplementation : IEquatable<StructWithRefTypeAndEquatableImplementation>
+    public struct StructWithRefTypeAndEquatableImplementation : IEquatable<StructWithRefTypeAndEquatableImplementation>
     {
         public int Age { get; set; }
         public int Height { get; set; }

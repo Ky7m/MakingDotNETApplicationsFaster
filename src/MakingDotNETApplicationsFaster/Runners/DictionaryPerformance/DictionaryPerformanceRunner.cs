@@ -1,47 +1,46 @@
 using System.Collections.Generic;
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.DictionaryPerformance
 {
-    sealed class DictionaryPerformanceRunner : IRunner
+    public class DictionaryPerformanceRunner
     {
-        public void Run()
+        private const int Size = 1000000;
+
+        private readonly Dictionary<int, string> _dictionary;
+
+        public DictionaryPerformanceRunner()
         {
-            const int size = 1000000;
+            _dictionary = new Dictionary<int, string>();
 
-            var dictionary = new Dictionary<int, string>();
-
-            for (var i = 0; i < size; i++)
+            for (var i = 0; i < Size; i++)
             {
-                dictionary.Add(i, i.ToString());
+                _dictionary.Add(i, i.ToString());
             }
-
-            new PerformanceTests
-            {
-                {_ => { UsingContainsKey(dictionary,size); }, "UsingContainsKey"},
-                {_ => { UsingTryGetValue(dictionary,size); }, "UsingTryGetValue"}
-            }.Run(100);
         }
 
-        static string UsingContainsKey(Dictionary<int, string> dictionary, int size)
+        [Benchmark]
+        public string UsingContainsKey()
         {
             var result = string.Empty;
-            for (var i = 0; i < size; i++)
+            for (var i = 0; i < Size; i++)
             {
-                if (dictionary.ContainsKey(i))
+                if (_dictionary.ContainsKey(i))
                 {
-                    result = dictionary[i];
+                    result = _dictionary[i];
                 }
             }
             return result;
         }
 
-        static string UsingTryGetValue(Dictionary<int, string> dictionary, int size)
+
+        [Benchmark]
+        public string UsingTryGetValue()
         {
             var result = string.Empty;
-            for (var i = 0; i < size; i++)
+            for (var i = 0; i < Size; i++)
             {
-                dictionary.TryGetValue(i, out result);
+                _dictionary.TryGetValue(i, out result);
             }
             return result;
         }

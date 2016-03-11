@@ -1,73 +1,56 @@
 using System.Collections.Generic;
 using System.Linq;
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
 {
-    sealed class DotNetLoopPerformanceRunner : IRunner
+    public class DotNetLoopPerformanceRunner
     {
-        const int ArrayLength = 10000;
-        public void Run()
+        private const int ArrayLength = 10000;
+        private readonly int[] _array;
+        private readonly List<int> _list;
+
+        public DotNetLoopPerformanceRunner()
         {
-            var array = Enumerable.Range(0, ArrayLength).ToArray();
+            _array = Enumerable.Range(0, ArrayLength).ToArray();
             //array[ArrayLength] = 1; // throws error on runtime: that means that the CLR has to inject bounds checking into array access
-            var list = array.ToList();
-
-            new PerformanceTests
-            {
-                {_ => { BaselineLoop(array); }, "BaselineLoop"},
-
-                {_ => { GetSumWhile(array); }, "GetSumWhile"},
-
-                {_ => { UnsafeArrayLinearAccessWithPointerIncrement(array); }, "UnsafeArrayLinearAccessWithPointerIncrement"},
-                {_ => { UnsafeArrayLinearAccess(array); }, "UnsafeArrayLinearAccess"},
-
-                {_ => { GetSumForeach(array); }, "GetSumForeach"},
-                {_ => { GetSumLinq(array); }, "GetSumLinq"},
-
-                {_ => { GetSumOfListFor(list); }, "GetSumOfListFor"},
-                {_ => { GetSumOfListForeach(list); }, "GetSumOfListForeach"},
-                {_ => { GetSumOfListLinq(list); }, "GetSumOfListLinq"},
-                {_ => { GetSumOfIEnumerableForeach(list); }, "GetSumOfIEnumerableForeach"},
-
-                {_ => { GetSumLoopUnrollingArray(array); }, "GetSumLoopUnrollingArray"},
-                {_ => { GetSumLoopUnrollingList(list); }, "GetSumLoopUnrollingList"},
-
-                {_ => { GetSumWithPrecalculatedLength(array); }, "GetSumWithPrecalculatedLength"}
-            }.Run(100000);
+            _list = _array.ToList();
         }
-
-        static long BaselineLoop(int[] array)
+        
+        [Benchmark]
+        public long BaselineLoop()
         {
             long sum = 0;
-            for (var i = 0; i < array.Length; i++)
+            for (var i = 0; i < _array.Length; i++)
             {
-                sum += array[i];
+                sum += _array[i];
             }
             return sum;
 
         }
 
-        static long GetSumWhile(int[] array)
+        [Benchmark]
+        public long GetSumWhile()
         {
             long sum = 0;
-            var i = array.Length;
+            var i = _array.Length;
             while (i-- > 0)
             {
-                sum += array[i];
+                sum += _array[i];
             }
             return sum;
 
         }
 
-        unsafe static long UnsafeArrayLinearAccessWithPointerIncrement(int[] array)
+        [Benchmark]
+        public unsafe long UnsafeArrayLinearAccessWithPointerIncrement()
         {
             long sum = 0;
-            fixed (int* pointer = &array[0])
+            fixed (int* pointer = &_array[0])
             {
                 var current = pointer;
 
-                for (var i = 0; i < array.Length; ++i)
+                for (var i = 0; i < _array.Length; ++i)
                 {
                     sum += *(current++);
                 }
@@ -76,14 +59,15 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             return sum;
         }
 
-        unsafe static long UnsafeArrayLinearAccess(int[] array)
+        [Benchmark]
+        public unsafe long UnsafeArrayLinearAccess()
         {
             long sum = 0;
-            fixed (int* pointer = &array[0])
+            fixed (int* pointer = &_array[0])
             {
                 var current = pointer;
 
-                for (var i = 0; i < array.Length; ++i)
+                for (var i = 0; i < _array.Length; ++i)
                 {
                     sum += *(current + i);
                 }
@@ -92,36 +76,40 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             return sum;
         }
 
-        static long GetSumForeach(int[] array)
+        [Benchmark]
+        public long GetSumForeach()
         {
             long sum = 0;
-            foreach (var val in array)
+            foreach (var val in _array)
             {
                 sum += val;
             }
             return sum;
         }
 
-        static long GetSumLinq(int[] array)
+        [Benchmark]
+        public long GetSumLinq()
         {
-            return array.Sum();
+            return _array.Sum();
         }
 
-        static long GetSumOfListFor(List<int> list)
+        [Benchmark]
+        public long GetSumOfListFor()
         {
             long sum = 0;
-            for (var i = 0; i < list.Count; i++)
+            for (var i = 0; i < _list.Count; i++)
             {
-                sum += list[i];
+                sum += _list[i];
             }
 
             return sum;
         }
 
-        static long GetSumOfListForeach(List<int> list)
+        [Benchmark]
+        public long GetSumOfListForeach()
         {
             long sum = 0;
-            foreach (var val in list)
+            foreach (var val in _list)
             {
                 sum += val;
             }
@@ -129,13 +117,16 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             return sum;
         }
 
-        static long GetSumOfListLinq(List<int> list)
+        [Benchmark]
+        public long GetSumOfListLinq()
         {
-            return list.Sum();
+            return _list.Sum();
         }
 
-        static long GetSumOfIEnumerableForeach(IEnumerable<int> collection)
+        [Benchmark]
+        public long GetSumOfIEnumerableForeach()
         {
+            var collection = _array as IEnumerable<int>;
             long sum = 0;
             foreach (var val in collection)
             {
@@ -145,40 +136,43 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             return sum;
         }
 
-        static long GetSumLoopUnrollingArray(int[] array)
+        [Benchmark]
+        public long GetSumLoopUnrollingArray()
         {
             long sum = 0;
-            for (var i = 0; i < array.Length - 4; i += 4)
+            for (var i = 0; i < _array.Length - 4; i += 4)
             {
-                sum += array[i];
-                sum += array[i + 1];
-                sum += array[i + 2];
-                sum += array[i + 3];
+                sum += _array[i];
+                sum += _array[i + 1];
+                sum += _array[i + 2];
+                sum += _array[i + 3];
             }
 
             return sum;
         }
 
-        static long GetSumLoopUnrollingList(List<int> list)
+        [Benchmark]
+        public long GetSumLoopUnrollingList()
         {
             long sum = 0;
-            for (var i = 0; i < list.Count - 4; i += 4)
+            for (var i = 0; i < _list.Count - 4; i += 4)
             {
-                sum += list[i];
-                sum += list[i + 1];
-                sum += list[i + 2];
-                sum += list[i + 3];
+                sum += _list[i];
+                sum += _list[i + 1];
+                sum += _list[i + 2];
+                sum += _list[i + 3];
             }
 
             return sum;
         }
 
-        static long GetSumWithPrecalculatedLength(int[] array)
+        [Benchmark]
+        public long GetSumWithPrecalculatedLength()
         {
             long sum = 0;
             for (var i = 0; i < ArrayLength; i++)
             {
-                sum += array[i];
+                sum += _array[i];
             }
 
             return sum;

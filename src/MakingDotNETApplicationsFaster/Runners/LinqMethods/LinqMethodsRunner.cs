@@ -1,28 +1,26 @@
 ﻿using System.Linq;
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.LinqMethods
 {
-    sealed class LinqMethodsRunner : IRunner
+    public class LinqMethodsRunner
     {
-        public void Run()
+        private readonly int[] _array;
+        public LinqMethodsRunner()
         {
-            var array = Enumerable.Range(0, 100000).ToArray();
-
-            new PerformanceTests
-            {
-                {i => { FirstOrDefault(array, i); }, "FirstOrDefault"},
-                {i => { SingleOrDefault(array, i); }, "SingleOrDefault"}
-            }.Run(10000);
+            _array = Enumerable.Range(0, 100000).ToArray();
         }
 
-        int FirstOrDefault(int[] array, int i)
+        [Benchmark]
+        public int FirstOrDefault()
         {
-            return array.FirstOrDefault(x => x == i);
+            return _array.FirstOrDefault(x => x == 100);
         }
-        int SingleOrDefault(int[] array, int i)
+
+        [Benchmark]
+        public int SingleOrDefault()
         {
-            return array.SingleOrDefault(x => x == i);
+            return _array.SingleOrDefault(x => x == 100);
         }
     }
 }

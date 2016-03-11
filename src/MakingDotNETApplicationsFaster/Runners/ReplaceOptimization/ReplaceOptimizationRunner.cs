@@ -1,26 +1,16 @@
 using System.Text;
 using System.Text.RegularExpressions;
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
 {
-    sealed class ReplaceOptimizationRunner : IRunner
+    public class ReplaceOptimizationRunner 
     {
-        public void Run()
-        {
-            const string text = "<span>Clear  Replace can <span>Dog  be optimized. <span>Cat <span>Draw ";
-            new PerformanceTests
-            {
-                {_ => { ReplaceWithoutContains(text); }, "ReplaceWithoutContains"},
-                {_ => { ReplaceWithContains(text); }, "ReplaceWithContains"},
-                {_ => { ReplaceUsingRegex(text); }, "ReplaceUsingRegex"},
-                {_ => { ReplaceUsingCompiledRegex(text); }, "ReplaceUsingCompiledRegex"},
-                {_ => { ReplaceUsingStringBuilder(text); }, "ReplaceUsingStringBuilder"}
-            }.Run(1000000);
-        }
 
-        static string ReplaceWithoutContains(string text)
+        [Benchmark]
+        public string ReplaceWithoutContains()
         {
+            var text = "<span>Clear  Replace can <span>Dog  be optimized. <span>Cat <span>Draw ";
             text = text.Replace("<span>Cat ", "<span>Cats ");
             text = text.Replace("<span>Clear ", "<span>Clears ");
             text = text.Replace("<span>Dog ", "<span>Dogs ");
@@ -28,8 +18,10 @@ namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
             return text;
         }
 
-        static string ReplaceWithContains(string text)
+        [Benchmark]
+        public string ReplaceWithContains()
         {
+            var text = "<span>Clear  Replace can <span>Dog  be optimized. <span>Cat <span>Draw ";
             if (text.Contains("<span>C"))
             {
                 text = text.Replace("<span>Cat ", "<span>Cats ");
@@ -43,8 +35,10 @@ namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
             return text;
         }
 
-        static string ReplaceUsingRegex(string text)
+        [Benchmark]
+        public string ReplaceUsingRegex()
         {
+            var text = "<span>Clear  Replace can <span>Dog  be optimized. <span>Cat <span>Draw ";
             text = Regex.Replace(text, "<span>Cat ", "<span>Cats ");
             text = Regex.Replace(text, "<span>Clear ", "<span>Clears ");
             text = Regex.Replace(text, "<span>Dog ", "<span>Dogs ");
@@ -52,8 +46,10 @@ namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
             return text;
         }
 
-        static string ReplaceUsingCompiledRegex(string text)
+        [Benchmark]
+        public string ReplaceUsingCompiledRegex()
         {
+            var text = "<span>Clear  Replace can <span>Dog  be optimized. <span>Cat <span>Draw ";
             text = Regex.Replace(text, "<span>Cat ", "<span>Cats ", RegexOptions.Compiled);
             text = Regex.Replace(text, "<span>Clear ", "<span>Clears ", RegexOptions.Compiled);
             text = Regex.Replace(text, "<span>Dog ", "<span>Dogs ", RegexOptions.Compiled);
@@ -61,8 +57,10 @@ namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
             return text;
         }
 
-        static string ReplaceUsingStringBuilder(string text)
+        [Benchmark]
+        public string ReplaceUsingStringBuilder()
         {
+            var text = "<span>Clear  Replace can <span>Dog  be optimized. <span>Cat <span>Draw ";
             var sb = new StringBuilder(text, text.Length);
             sb = sb.Replace("<span>Cat ", "<span>Cats ");
             sb = sb.Replace("<span>Clear ", "<span>Clears ");

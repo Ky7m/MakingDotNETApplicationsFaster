@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 
 namespace MakingDotNETApplicationsFaster.Runners.SIMD
 {
-    struct CustomVector
+    internal struct CustomVector
     {
         public float X;
         public float Y;

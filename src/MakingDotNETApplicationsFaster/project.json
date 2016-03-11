@@ -3,7 +3,8 @@
   "compilationOptions": {
     "warningsAsErrors": true,
     "allowUnsafe": true,
-    "emitEntryPoint": true
+    "emitEntryPoint": true,
+    "optimize": true
   },
   "description": "Some quick and sometimes dirty C# code to evaluate the performance difference between various approaches.",
   "authors": [ "Igor Fesenko" ],
@@ -13,21 +14,18 @@
     "run": "MakingDotNETApplicationsFaster"
   },
   "frameworks": {
-    "dnxcore50": {
+    "dnx451": {
       "dependencies": {
         "Microsoft.Framework.ConfigurationModel": "1.0.0-*",
-        "Microsoft.CSharp": "4.0.1-*",
         "System.Collections": "4.0.11-*",
-        "System.Console": "4.0.0-*",
-        "System.IO": "4.0.11-*",
-        "System.Linq": "4.0.1-*",
         "System.Numerics.Vectors": "4.1.1-*",
-        "System.Text.RegularExpressions": "4.0.11-*",
-        "System.Threading": "4.0.11-*"
+        "System.Threading": "4.0.11-*",
+        "BenchmarkDotNet": "0.9.2",
+        "FastMember": "1.1.0-*",
+        "System.IO": "4.1.0-*",
+        "System.Linq": "4.1.0-*",
+        "System.Text.RegularExpressions": "4.0.12-*"
       }
     }
-  },
-  "dependencies": {
-   "FastMember": "1.1.0-beta1"
   }
 }

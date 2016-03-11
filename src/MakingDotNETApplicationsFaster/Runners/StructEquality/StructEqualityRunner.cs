@@ -1,49 +1,58 @@
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.StructEquality
 {
-    sealed class StructEqualityRunner : IRunner
+    public class StructEqualityRunner
     {
-        public void Run()
+        private StructWithNoRefType _a;
+        private StructWithNoRefType _b;
+
+        private StructWithRefType _c;
+        private StructWithRefType _d;
+
+        private StructWithRefTypeAndOverridenEquals _x;
+        private StructWithRefTypeAndOverridenEquals _y;
+
+        private StructWithRefTypeAndEquatableImplementation _m;
+        private StructWithRefTypeAndEquatableImplementation _n;
+
+        public StructEqualityRunner()
         {
-            var a = new StructWithNoRefType();
-            var b = new StructWithNoRefType();
+            _a = new StructWithNoRefType();
+            _b = new StructWithNoRefType();
 
-            var c = new StructWithRefType();
-            var d = new StructWithRefType();
+            _c = new StructWithRefType();
+            _d = new StructWithRefType();
 
-            var x = new StructWithRefTypeAndOverridenEquals();
-            var y = new StructWithRefTypeAndOverridenEquals();
+            _x = new StructWithRefTypeAndOverridenEquals();
+            _y = new StructWithRefTypeAndOverridenEquals();
 
-            var m = new StructWithRefTypeAndEquatableImplementation();
-            var n = new StructWithRefTypeAndEquatableImplementation();
-
-            new PerformanceTests
-            {
-                {_ => { CompareStructsWithNoRefTypes(a, b); }, "CompareStructsWithNoRefTypes"},
-                {_ => { CompareStructsWithRefTypes(c, d); }, "CompareStructsWithRefTypes"},
-                {_ => { CompareStructsWithRefTypesAndOverridenEquals(x, y); }, "CompareStructsWithRefTypesAndOverridenEquals"},
-                {_ => { CompareStructsWithRefTypesAndEquatableImplementation(m, n); }, "CompareStructsWithRefTypesAndEquatableImplementation"}
-            }.Run(10000000);
+            _m = new StructWithRefTypeAndEquatableImplementation();
+            _n = new StructWithRefTypeAndEquatableImplementation();
         }
 
-        static bool CompareStructsWithNoRefTypes(StructWithNoRefType a, StructWithNoRefType b)
+        [Benchmark]
+        public bool CompareStructsWithNoRefTypes()
         {
-            return a.Equals(b);
+            return _a.Equals(_b);
         }
 
-        static bool CompareStructsWithRefTypes(StructWithRefType c, StructWithRefType d)
+        [Benchmark]
+        public bool CompareStructsWithRefTypes()
         {
-            return c.Equals(d);
+            return _c.Equals(_d);
         }
 
-        static bool CompareStructsWithRefTypesAndOverridenEquals(StructWithRefTypeAndOverridenEquals x, StructWithRefTypeAndOverridenEquals y)
+        [Benchmark]
+        public bool CompareStructsWithRefTypesAndOverridenEquals()
         {
-            return x.Equals(y);
+            return _x.Equals(_y);
         }
-        static bool CompareStructsWithRefTypesAndEquatableImplementation(StructWithRefTypeAndEquatableImplementation x, StructWithRefTypeAndEquatableImplementation y)
+
+        [Benchmark]
+        public bool CompareStructsWithRefTypesAndEquatableImplementation()
         {
-            return x.Equals(y);
+            return _m.Equals(_n);
         }
     }
 }

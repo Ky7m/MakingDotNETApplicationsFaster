@@ -1,83 +1,89 @@
 ﻿using System;
 using System.Reflection;
+using BenchmarkDotNet.Attributes;
 using FastMember;
-using MakingDotNETApplicationsFaster.Infrastructure;
 
 namespace MakingDotNETApplicationsFaster.Runners.FastMemberPerformance
 {
-    sealed class FastMemberPerformanceRunner : IRunner
+    public class FastMemberPerformanceRunner
     {
         public string Value { get; set; }
 
+        private FastMemberPerformanceRunner _obj;
+        private dynamic _dlr;
+        private PropertyInfo _prop ;
 
-        public void Run()
+        // FastMember 
+        private TypeAccessor _accessor ;
+        private ObjectAccessor _wrapped ;
+
+        private Type _type ;
+
+        [Setup]
+        public void SetupData()
         {
-            var obj = new FastMemberPerformanceRunner();
-            dynamic dlr = obj;
-            var prop = typeof(FastMemberPerformanceRunner).GetProperty("Value");
+            _obj = new FastMemberPerformanceRunner();
+            _dlr = _obj;
+            _prop = typeof(FastMemberPerformanceRunner).GetProperty("Value");
 
             // FastMember 
-            var accessor = FastMember.TypeAccessor.Create(typeof(FastMemberPerformanceRunner));
-            var wrapped = FastMember.ObjectAccessor.Create(obj);
+            _accessor = FastMember.TypeAccessor.Create(typeof(FastMemberPerformanceRunner));
+            _wrapped = FastMember.ObjectAccessor.Create(_obj);
 
-            Type type = typeof(FastMemberPerformanceRunner);
-
-            new PerformanceTests
-            {
-                {_ => StaticCSharp(obj), "StaticCSharp"},
-                {_ => DynamicCSharp(dlr), "DynamicCSharp"},
-                {_ => PropertyInfo(prop, obj), "PropertyInfo"},
-                {_ => TypeAccessor(accessor, obj), "TypeAccessor"},
-                {_ => ObjectAccessor(wrapped), "ObjectAccessor"},
-                //{_ => CSharpNew(), "CSharpNew"},
-                //{_ => ActivatorCreateInstance(type), "ActivatorCreateInstance"},
-                //{_ => TypeAccessorCreateNew(accessor), "TypeAccessorCreateNew"}
-            }.Run(1000000);
+            _type = typeof(FastMemberPerformanceRunner);
         }
-
-        static string StaticCSharp(FastMemberPerformanceRunner obj)
+      
+        [Benchmark]
+        public string StaticCSharp()
         {
-            obj.Value = "abc";
-            return obj.Value;
+            _obj.Value = "abc";
+            return _obj.Value;
         }
 
-        static string DynamicCSharp(dynamic dlr)
+        [Benchmark]
+        public string DynamicCSharp()
         {
-            dlr.Value = "abc";
-            return dlr.Value;
+            _dlr.Value = "abc";
+            return _dlr.Value;
         }
 
-        static string PropertyInfo(PropertyInfo prop, FastMemberPerformanceRunner obj)
+        [Benchmark]
+        public string PropertyInfo()
         {
-            prop.SetValue(obj, "abc", null);
-            return (string)prop.GetValue(obj, null);
+            _prop.SetValue(_obj, "abc", null);
+            return (string)_prop.GetValue(_obj, null);
         }
 
-        static string TypeAccessor(TypeAccessor accessor, FastMemberPerformanceRunner obj)
+        [Benchmark]
+        public string TypeAccessor()
         {
-            accessor[obj, "Value"] = "abc";
-            return (string)accessor[obj, "Value"];
+            _accessor[_obj, "Value"] = "abc";
+            return (string)_accessor[_obj, "Value"];
         }
 
-        static string ObjectAccessor(ObjectAccessor wrapped)
+        [Benchmark]
+        public string ObjectAccessor()
         {
-            wrapped["Value"] = "abc";
-            return (string)wrapped["Value"];
+            _wrapped["Value"] = "abc";
+            return (string)_wrapped["Value"];
         }
 
-        static FastMemberPerformanceRunner CSharpNew()
+        [Benchmark]
+        public FastMemberPerformanceRunner CSharpNew()
         {
             return new FastMemberPerformanceRunner();
         }
 
-        static object ActivatorCreateInstance(Type type)
+        [Benchmark]
+        public object ActivatorCreateInstance()
         {
-            return Activator.CreateInstance(type);
+            return Activator.CreateInstance(_type);
         }
 
-        static object TypeAccessorCreateNew(TypeAccessor accessor)
+        [Benchmark]
+        public object TypeAccessorCreateNew()
         {
-            return accessor.CreateNew();
+            return _accessor.CreateNew();
         }
     }
 }

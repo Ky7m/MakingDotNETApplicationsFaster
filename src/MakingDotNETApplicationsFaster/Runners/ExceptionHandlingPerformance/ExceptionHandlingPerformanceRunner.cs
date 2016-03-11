@@ -1,24 +1,16 @@
 using System;
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
 {
-    sealed class ExceptionHandlingPerformanceRunner : IRunner
+    public class ExceptionHandlingPerformanceRunner
     {
-        public void Run()
-        {
-            const int length = 10000;
+        private const int Length = 10000;
 
-            new PerformanceTests
-            {
-                {_ => { TryCatchInsideInnerLoop(length); }, "TryCatchInsideInnerLoop"},
-                {_ => { TryCatchOutsideInnerLoop(length); }, "TryCatchOutsideInnerLoop"}
-            }.Run(1000000);
-        }
-
-        static void TryCatchInsideInnerLoop(int length)
+        [Benchmark]
+        public void TryCatchInsideInnerLoop()
         {
-            for (var i = 0; i < length; i++)
+            for (var i = 0; i < Length; i++)
             {
                 try
                 {
@@ -35,11 +27,12 @@ namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
             }
         }
 
-        static void TryCatchOutsideInnerLoop(int length)
+        [Benchmark]
+        public void TryCatchOutsideInnerLoop()
         {
             try
             {
-                for (var i = 0; i < length; i++)
+                for (var i = 0; i < Length; i++)
                 {
                     var value = i * 100;
                     if (value == -1)

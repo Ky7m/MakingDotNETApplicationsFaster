@@ -1,114 +1,67 @@
-using System;
-using MakingDotNETApplicationsFaster.Infrastructure;
+using BenchmarkDotNet.Attributes;
+
 
 namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 {
-    sealed class JaggedArraysVersus2DArraysRunner : IRunner
+    public class JaggedArraysVersus2DArraysRunner 
     {
-        const bool ForceFullCollection = true;
-        const int Increment = 1309;
+        private const int Increment = 1309;
+        private const int Rows = 1000;
+        private const int Cols = 100;
+        private readonly int[][] _jaggedArray;
+        private readonly int[,] _array;
 
-        public void Run()
+        public JaggedArraysVersus2DArraysRunner()
         {
-            const int rows = 1000;
-            const int cols = 100;
-
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-            GC.WaitForPendingFinalizers();
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-
-            var jaggedArray = JaggedArrayMemory(rows, cols);
-
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-            GC.WaitForPendingFinalizers();
-            GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
-
-            var array = TwoDimensionalArrayMemory(rows, cols);
-
-            new PerformanceTests
+            _jaggedArray = new int[Rows][];
+            for (var i = 0; i < Rows; i++)
             {
-                {_ => { GetSumFor2DArray(array,rows,cols); }, "GetSumFor2DArray"},
-                {_ => { GetSumForJaggedArray(jaggedArray,rows,cols); }, "GetSumForJaggedArray"},
-
-                {_ => { GetSumForJaggedArrayWithCachingTo1DArray(jaggedArray,rows,cols); }, "GetSumForJaggedArrayWithCachingTo1DArray"},
-
-                {_ => { Traversal2DArray(array,rows,cols); }, "Traversal2DArray"},
-                {_ => { TraversalJaggedArray(jaggedArray,rows,cols); }, "TraversalJaggedArray"},
-
-                {_ => { OptimizedTraversal2DArray(array,rows,cols); }, "OptimizedTraversal2DArray"},
-                {_ => { OptimizedTraversalJagged(jaggedArray,rows,cols); }, "OptimizedTraversalJagged"},
-
-                {_ => { SemiRandomAccess2DArray(array,rows,cols); }, "SemiRandomAccess2DArray"},
-                {_ => { SemiRandomAccessJaggedArray(jaggedArray,rows,cols); }, "SemiRandomAccessJaggedArray"}
-            }.Run(10000);
-        }
-
-        #region Memory Test
-
-        static int[][] JaggedArrayMemory(int rows, int cols)
-        {
-
-            var b1 = GC.GetTotalMemory(ForceFullCollection);
-            var jagged = new int[rows][];
-            for (var i = 0; i < rows; i++)
-            {
-                jagged[i] = new int[cols];
+                _jaggedArray[i] = new int[Cols];
             }
-            var b2 = GC.GetTotalMemory(ForceFullCollection);
-            jagged[0][0] = 0;
-            Console.WriteLine("{0} bytes (jagged {1} x {2})", b2 - b1, rows, cols);
-            return jagged;
+            _jaggedArray[0][0] = 0;
+
+            _array = new int[Rows, Cols];
+           
+            _array[0, 0] = 0;
         }
-
-        static int[,] TwoDimensionalArrayMemory(int rows, int cols)
-        {
-            var b1 = GC.GetTotalMemory(ForceFullCollection);
-            var array = new int[rows, cols];
-            var b2 = GC.GetTotalMemory(ForceFullCollection);
-            array[0, 0] = 0;
-            Console.WriteLine("{0} bytes (2D {1} x {2})", b2 - b1, rows, cols);
-            return array;
-        }
-
-        #endregion Memory Test
-
-        #region Performance Test
-
-        static long GetSumFor2DArray(int[,] array, int rows, int cols)
+        [Benchmark]
+        public long GetSumFor2DArray()
         {
             long sum = 0;
-            for (var i = 0; i < rows; ++i)
+            for (var i = 0; i < Rows; ++i)
             {
-                for (var j = 0; j < cols; ++j)
+                for (var j = 0; j < Cols; ++j)
                 {
-                    sum += array[i, j];
+                    sum += _array[i, j];
                 }
             }
             return sum;
 
         }
 
-        static long GetSumForJaggedArray(int[][] jaggedArray, int rows, int cols)
+        [Benchmark]
+        public long GetSumForJaggedArray()
         {
             long sum = 0;
-            for (var i = 0; i < rows; ++i)
+            for (var i = 0; i < Rows; ++i)
             {
-                for (var j = 0; j < cols; ++j)
+                for (var j = 0; j < Cols; ++j)
                 {
-                    sum += jaggedArray[i][j];
+                    sum += _jaggedArray[i][j];
                 }
             }
             return sum;
 
         }
 
-        static long GetSumForJaggedArrayWithCachingTo1DArray(int[][] jaggedArray, int rows, int cols)
+        [Benchmark]
+        public long GetSumForJaggedArrayWithCachingTo1DArray()
         {
             long sum = 0;
-            for (var i = 0; i < rows; ++i)
+            for (var i = 0; i < Rows; ++i)
             {
-                var theRow = jaggedArray[i];
-                for (var j = 0; j < cols; ++j)
+                var theRow = _jaggedArray[i];
+                for (var j = 0; j < Cols; ++j)
                 {
                     sum += theRow[j];
                 }
@@ -117,34 +70,37 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
 
         }
 
-        static void Traversal2DArray(int[,] array, int rows, int cols)
+        [Benchmark]
+        public void Traversal2DArray()
         {
-            for (var i = 0; i < rows; ++i)
+            for (var i = 0; i < Rows; ++i)
             {
-                for (var j = 0; j < cols; ++j)
+                for (var j = 0; j < Cols; ++j)
                 {
-                    array[i, j] = int.MaxValue - array[i, j];
+                    _array[i, j] = int.MaxValue - _array[i, j];
                 }
             }
         }
 
-        static void TraversalJaggedArray(int[][] jaggedArray, int rows, int cols)
+        [Benchmark]
+        public void TraversalJaggedArray()
         {
-            for (var i = 0; i < rows; ++i)
+            for (var i = 0; i < Rows; ++i)
             {
-                for (var j = 0; j < cols; ++j)
+                for (var j = 0; j < Cols; ++j)
                 {
-                    jaggedArray[i][j] = int.MaxValue - jaggedArray[i][j];
+                    _jaggedArray[i][j] = int.MaxValue - _jaggedArray[i][j];
                 }
             }
         }
 
-        static void OptimizedTraversal2DArray(int[,] array, int rows, int cols)
+        [Benchmark]
+        public void OptimizedTraversal2DArray()
         {
-            var count = (((long)rows) * cols) / 3;
+            var count = (((long)Rows) * Cols) / 3;
             unsafe
             {
-                fixed (int* pArray = array)
+                fixed (int* pArray = _array)
                 {
                     var p = pArray;
                     while (count-- > 0)
@@ -157,14 +113,15 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
             }
         }
 
-        static void OptimizedTraversalJagged(int[][] array, int rows, int cols)
+        [Benchmark]
+        public void OptimizedTraversalJagged()
         {
-            for (var i = 0; i < rows; ++i)
+            for (var i = 0; i < Rows; ++i)
             {
                 unsafe
                 {
-                    var count = cols / 3;
-                    fixed (int* pArray = array[i])
+                    var count = Cols / 3;
+                    fixed (int* pArray = _jaggedArray[i])
                     {
                         var p = pArray;
                         while (count-- > 0)
@@ -178,32 +135,32 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
             }
         }
 
-        static void SemiRandomAccess2DArray(int[,] array, int rows, int cols)
+        [Benchmark]
+        public void SemiRandomAccess2DArray()
         {
-            var count = rows * cols;
+            var count = Rows * Cols;
             var row = 0;
             var col = 0;
             while (count-- > 0)
             {
-                row = (row + Increment) % rows;
-                col = (col + Increment) % cols;
-                array[row, col] = int.MaxValue - array[row, col];
+                row = (row + Increment) % Rows;
+                col = (col + Increment) % Cols;
+                _array[row, col] = int.MaxValue - _array[row, col];
             }
         }
 
-        static void SemiRandomAccessJaggedArray(int[][] array, int rows, int cols)
+        [Benchmark]
+        public void SemiRandomAccessJaggedArray()
         {
-            var count = rows * cols;
+            var count = Rows * Cols;
             var row = 0;
             var col = 0;
             while (count-- > 0)
             {
-                row = (row + Increment) % rows;
-                col = (col + Increment) % cols;
-                array[row][col] = int.MaxValue - array[row][col];
+                row = (row + Increment) % Rows;
+                col = (col + Increment) % Cols;
+                _jaggedArray[row][col] = int.MaxValue - _jaggedArray[row][col];
             }
         }
-
-        #endregion Performance Test
     }
 }

@@ -9,12 +9,12 @@
   "authors": [ "Igor Fesenko" ],
   "tags": [ "" ],
   "projectUrl": "https://github.com/Ky7m/MakingDotNETApplicationsFaster",
-  "dependencies": {
-    "System.Numerics.Vectors": "4.1.1-*",
-    "FastMember": "1.1.0-*",
-    "BenchmarkDotNet": "0.9.4"
-  },
+    "dependencies": {
+        "System.Numerics.Vectors": "4.1.1-*",
+        "FastMember": "1.1.0-*",
+        "BenchmarkDotNet": "0.9.4"
+    },
   "frameworks": {
-   "net461": {}
+    "net461": {}
   }
 }

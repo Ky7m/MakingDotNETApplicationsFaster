@@ -10,7 +10,6 @@ using MakingDotNETApplicationsFaster.Runners.ReadOnlyFields;
 using MakingDotNETApplicationsFaster.Runners.ReplaceOptimization;
 using MakingDotNETApplicationsFaster.Runners.SIMD;
 using MakingDotNETApplicationsFaster.Runners.StructEquality;
-using Microsoft.Framework.ConfigurationModel;
 
 namespace MakingDotNETApplicationsFaster
 {
@@ -18,10 +17,6 @@ namespace MakingDotNETApplicationsFaster
     {
         public static void Main(string[] args)
         {
-            var configuration = new Configuration();
-            configuration.AddEnvironmentVariables();
-            configuration.AddCommandLine(args);
-
             var switcher = new BenchmarkSwitcher(new[]
             {
                 typeof(DotNetLoopPerformanceRunner),

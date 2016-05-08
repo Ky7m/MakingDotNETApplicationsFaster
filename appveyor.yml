@@ -1,8 +1,14 @@
 version: 1.0.{build}
 init:
   - git config --global core.autocrlf true
+branches:
+  only:
+    - master
+    - release
+    - develop
+    - /^(.*\/)?ci-.*$/
 build_script:
-  - build.cmd --quiet verify
+  - build.cmd verify
 clone_depth: 1
 test: off
 deploy: off

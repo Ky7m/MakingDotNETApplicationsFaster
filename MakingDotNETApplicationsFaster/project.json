@@ -1,18 +1,24 @@
 {
   "version": "1.0.0-*",
-  "compilationOptions": {
-    "emitEntryPoint": true,
-    "warningsAsErrors": true,
-    "allowUnsafe": true
-  },
-  "description": "Some quick and sometimes dirty C# code to evaluate the performance difference between various approaches.",
-  "authors": [ "Igor Fesenko" ],
-    "dependencies": {
-        "System.Numerics.Vectors": "4.1.1-beta-23516",
-        "FastMember": "1.1.0-beta1",
-        "BenchmarkDotNet": "0.9.5"
+    "buildOptions": {
+        "emitEntryPoint": true,
+        "warningsAsErrors": true,
+        "allowUnsafe": true
     },
+
+    "dependencies": {
+        "Microsoft.NETCore.App": {
+            "type": "platform",
+            "version": "1.0.0-rc2-3002702"
+        },
+        "BenchmarkDotNet": "0.9.6",
+        "FastMember": "1.1.0-beta1",
+        "System.Numerics.Vectors": "4.1.1-rc3-24106-00"
+    },
+
   "frameworks": {
-    "net461": {}
+    "netcoreapp1.0": {
+        "imports": "dnxcore50"
+    }
   }
 }

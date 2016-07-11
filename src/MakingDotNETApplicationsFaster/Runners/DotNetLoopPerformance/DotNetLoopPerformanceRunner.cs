@@ -16,7 +16,7 @@ namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
             //array[ArrayLength] = 1; // throws error on runtime: that means that the CLR has to inject bounds checking into array access
             _list = _array.ToList();
         }
-        
+
         [Benchmark]
         public long BaselineLoop()
         {

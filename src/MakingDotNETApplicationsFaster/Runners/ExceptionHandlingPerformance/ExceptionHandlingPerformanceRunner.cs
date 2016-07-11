@@ -22,7 +22,7 @@ namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
                 }
                 catch (Exception exception)
                 {
-                    Console.WriteLine(exception.ToString());
+                    Console.WriteLine(exception);
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace MakingDotNETApplicationsFaster.Runners.ExceptionHandlingPerformance
             }
             catch (Exception exception)
             {
-                Console.WriteLine(exception.ToString());
+                Console.WriteLine(exception);
             }
         }
     }

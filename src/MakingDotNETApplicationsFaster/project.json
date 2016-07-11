@@ -12,9 +12,7 @@
             "version": "1.0.0"
         },
         "BenchmarkDotNet": "0.9.8",
-        "FastMember": "1.1.0-beta1",
-        "System.Numerics.Vectors": "4.1.2-beta-24303-04",
-        "System.Reflection": "4.1.0"
+        "FastMember": "1.1.0-beta1"
     },
 
   "frameworks": {

@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
 {
-    public class ReplaceOptimizationRunner 
+    public class ReplaceOptimizationRunner
     {
 
         [Benchmark]

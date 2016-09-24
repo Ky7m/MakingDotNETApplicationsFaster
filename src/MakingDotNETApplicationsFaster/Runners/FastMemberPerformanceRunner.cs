@@ -3,7 +3,7 @@ using System.Reflection;
 using BenchmarkDotNet.Attributes;
 using FastMember;
 
-namespace MakingDotNETApplicationsFaster.Runners.FastMemberPerformance
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class FastMemberPerformanceRunner
     {
@@ -13,7 +13,7 @@ namespace MakingDotNETApplicationsFaster.Runners.FastMemberPerformance
         private dynamic _dlr;
         private PropertyInfo _prop ;
 
-        // FastMember 
+        // FastMember
         private TypeAccessor _accessor ;
         private ObjectAccessor _wrapped ;
 
@@ -26,13 +26,13 @@ namespace MakingDotNETApplicationsFaster.Runners.FastMemberPerformance
             _dlr = _obj;
             _prop = typeof(FastMemberPerformanceRunner).GetProperty("Value");
 
-            // FastMember 
+            // FastMember
             _accessor = FastMember.TypeAccessor.Create(typeof(FastMemberPerformanceRunner));
             _wrapped = FastMember.ObjectAccessor.Create(_obj);
 
             _type = typeof(FastMemberPerformanceRunner);
         }
-      
+
         [Benchmark]
         public string StaticCSharp()
         {

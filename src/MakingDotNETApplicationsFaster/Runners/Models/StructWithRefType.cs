@@ -1,4 +1,4 @@
-namespace MakingDotNETApplicationsFaster.Runners.StructEquality
+namespace MakingDotNETApplicationsFaster.Runners.Models
 {
     public struct StructWithRefType
     {

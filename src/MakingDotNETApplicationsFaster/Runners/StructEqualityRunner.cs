@@ -1,6 +1,7 @@
+using MakingDotNETApplicationsFaster.Runners.Models;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.StructEquality
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class StructEqualityRunner
     {

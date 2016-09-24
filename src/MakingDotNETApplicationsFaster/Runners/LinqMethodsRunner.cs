@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.LinqMethods
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class LinqMethodsRunner
     {

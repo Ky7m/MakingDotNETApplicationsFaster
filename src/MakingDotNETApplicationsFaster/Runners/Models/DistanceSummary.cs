@@ -1,4 +1,4 @@
-namespace MakingDotNETApplicationsFaster.Runners.SerializersPerformance.Models
+namespace MakingDotNETApplicationsFaster.Runners.Models
 {
     public struct DistanceSummary
     {

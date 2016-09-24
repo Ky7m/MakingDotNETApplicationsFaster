@@ -1,6 +1,6 @@
 using System;
 
-namespace MakingDotNETApplicationsFaster.Runners.StructEquality
+namespace MakingDotNETApplicationsFaster.Runners.Models
 {
     public struct StructWithRefTypeAndEquatableImplementation : IEquatable<StructWithRefTypeAndEquatableImplementation>
     {

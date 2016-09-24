@@ -1,7 +1,7 @@
 using System;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.CompareStrings
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class CompareStringsRunner
     {

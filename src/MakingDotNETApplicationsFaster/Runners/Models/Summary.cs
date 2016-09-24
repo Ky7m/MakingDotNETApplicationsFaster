@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MakingDotNETApplicationsFaster.Runners.SerializersPerformance.Models
+namespace MakingDotNETApplicationsFaster.Runners.Models
 {
     public sealed class Summary
     {

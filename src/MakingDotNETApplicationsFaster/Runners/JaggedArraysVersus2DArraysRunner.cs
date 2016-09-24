@@ -1,9 +1,8 @@
 using BenchmarkDotNet.Attributes;
 
-
-namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
+namespace MakingDotNETApplicationsFaster.Runners
 {
-    public class JaggedArraysVersus2DArraysRunner 
+    public class JaggedArraysVersus2DArraysRunner
     {
         private const int Increment = 1309;
         private const int Rows = 1000;
@@ -21,7 +20,7 @@ namespace MakingDotNETApplicationsFaster.Runners.JaggedArraysVersus2DArrays
             _jaggedArray[0][0] = 0;
 
             _array = new int[Rows, Cols];
-           
+
             _array[0, 0] = 0;
         }
         [Benchmark]

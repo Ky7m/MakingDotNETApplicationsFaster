@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.DotNetLoopPerformance
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class DotNetLoopPerformanceRunner
     {

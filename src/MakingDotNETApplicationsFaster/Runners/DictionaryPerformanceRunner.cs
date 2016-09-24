@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.DictionaryPerformance
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class DictionaryPerformanceRunner
     {

@@ -1,25 +1,29 @@
 {
   "version": "1.0.0-*",
     "buildOptions": {
-        "emitEntryPoint": true,
         "warningsAsErrors": true,
-        "allowUnsafe": true
+        "allowUnsafe": true,
+        "debugType": "portable",
+        "emitEntryPoint": true
     },
-
     "dependencies": {
-        "Microsoft.NETCore.App": {
-            "type": "platform",
-            "version": "1.0.0"
-        },
+        "Microsoft.NETCore.App": "1.0.1",
         "BenchmarkDotNet": "0.9.9",
         "Newtonsoft.Json": "9.0.1",
         "FastMember": "1.1.0",
-        "Wire": "0.8.1"
+        "Wire": "0.8.1",
+        "System.Linq": "4.1.0"
     },
-
   "frameworks": {
     "netcoreapp1.0": {
+        "dependencies": {
+            "Microsoft.NETCore.App": {
+                "version": "1.0.1",
+                "type": "platform"
+            }
+        },
       "imports": "dnxcore50"
     }
   }
 }
+

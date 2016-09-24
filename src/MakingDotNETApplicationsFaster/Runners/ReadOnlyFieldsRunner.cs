@@ -1,6 +1,6 @@
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.ReadOnlyFields
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class ReadOnlyFieldsRunner
     {
@@ -18,5 +18,20 @@ namespace MakingDotNETApplicationsFaster.Runners.ReadOnlyFields
         {
             return _readOnlyValue.Bits0 + _readOnlyValue.Bits1 + _readOnlyValue.Bits2 + _readOnlyValue.Bits3;
         }
+    }
+
+    public struct Int256
+    {
+        public Int256(long bits0, long bits1, long bits2, long bits3)
+        {
+            Bits0 = bits0;
+            Bits1 = bits1;
+            Bits2 = bits2;
+            Bits3 = bits3;
+        }
+        public long Bits0 { get; set; }
+        public long Bits1 { get; set; }
+        public long Bits2 { get; set; }
+        public long Bits3 { get; set; }
     }
 }

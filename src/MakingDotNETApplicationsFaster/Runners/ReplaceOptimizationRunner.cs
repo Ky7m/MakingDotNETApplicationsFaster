@@ -2,7 +2,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.ReplaceOptimization
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class ReplaceOptimizationRunner
     {

@@ -1,6 +1,6 @@
 using System.IO;
 using BenchmarkDotNet.Attributes;
-using MakingDotNETApplicationsFaster.Runners.SerializersPerformance.Models;
+using MakingDotNETApplicationsFaster.Runners.Models;
 using Newtonsoft.Json;
 using Wire;
 

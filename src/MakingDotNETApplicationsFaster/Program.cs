@@ -2,6 +2,8 @@
 using System.Linq;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Engines;
+using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
@@ -14,21 +16,11 @@ namespace MakingDotNETApplicationsFaster
     {
         public static void Main()
         {
-            var config = ManualConfig.CreateEmpty()
-                .With(
-                    Job.Dry.With(Runtime.Core)
-                        .With(Platform.X64)
-                        .With(Jit.RyuJit)
-                        .With(Mode.Throughput)
-                        .WithWarmupCount(1)
-                        .WithTargetCount(10))
-                .With(DefaultConfig.Instance.GetLoggers().ToArray())
-                .With(PropertyColumn.Method, PropertyColumn.Runtime, PropertyColumn.Platform, PropertyColumn.Jit,
-                    StatisticColumn.Median, StatisticColumn.StdDev, StatisticColumn.Max, StatisticColumn.Min)
+            var config = DefaultConfig.Instance
                 .With(new SlowestToFastestOrderProviderWithoutParameters())
                 .RemoveBenchmarkFiles();
 
-            BenchmarkRunner.Run<CompareStringsRunner>(config);
+            BenchmarkRunner.Run<SerializersPerformanceRunner>(config);
         }
 
         private class SlowestToFastestOrderProviderWithoutParameters : IOrderProvider

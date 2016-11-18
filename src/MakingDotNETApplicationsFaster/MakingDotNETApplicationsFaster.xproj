@@ -17,6 +17,7 @@
   </PropertyGroup>
   <ItemGroup>
     <DnxInvisibleFolder Include=".vscode\" />
+    <DnxInvisibleFolder Include="BenchmarkDotNet.Artifacts\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

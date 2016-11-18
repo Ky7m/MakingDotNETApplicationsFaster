@@ -11,11 +11,12 @@
             "version": "1.0.1",
             "type": "platform"
         },
-        "BenchmarkDotNet": "0.9.9",
-        "Newtonsoft.Json": "9.0.1",
         "FastMember": "1.1.0",
         "Wire": "0.8.1",
-        "System.Linq": "4.1.0"
+        "ZeroFormatter": "1.4.1",
+        "BenchmarkDotNet": "0.10.0",
+        "Newtonsoft.Json": "9.0.2-beta1",
+        "System.Linq": "4.3.0"
     },
   "frameworks": {
     "netcoreapp1.0": {

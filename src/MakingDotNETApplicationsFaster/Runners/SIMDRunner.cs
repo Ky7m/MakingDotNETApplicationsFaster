@@ -3,7 +3,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using BenchmarkDotNet.Attributes;
 
-namespace MakingDotNETApplicationsFaster.Runners.SIMD
+namespace MakingDotNETApplicationsFaster.Runners
 {
     public class SIMDRunner
     {

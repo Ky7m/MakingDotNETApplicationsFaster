@@ -5,6 +5,7 @@ using FastMember;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class FastMemberPerformanceRunner
     {
         public string Value { get; set; }

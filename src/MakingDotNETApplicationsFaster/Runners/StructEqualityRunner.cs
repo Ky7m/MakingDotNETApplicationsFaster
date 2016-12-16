@@ -1,8 +1,9 @@
-using MakingDotNETApplicationsFaster.Runners.Models;
 using BenchmarkDotNet.Attributes;
+using MakingDotNETApplicationsFaster.Runners.Models;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class StructEqualityRunner
     {
         private StructWithNoRefType _a;

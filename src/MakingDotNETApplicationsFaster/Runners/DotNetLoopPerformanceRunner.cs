@@ -4,6 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class DotNetLoopPerformanceRunner
     {
         private const int ArrayLength = 10000;

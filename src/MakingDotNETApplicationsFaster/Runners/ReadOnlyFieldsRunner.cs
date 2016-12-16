@@ -2,6 +2,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class ReadOnlyFieldsRunner
     {
         private Int256 _value = new Int256(1L, 5L, 10L, 100L);

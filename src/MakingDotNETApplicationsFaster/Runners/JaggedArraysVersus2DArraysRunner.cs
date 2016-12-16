@@ -2,6 +2,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class JaggedArraysVersus2DArraysRunner
     {
         private const int Increment = 1309;

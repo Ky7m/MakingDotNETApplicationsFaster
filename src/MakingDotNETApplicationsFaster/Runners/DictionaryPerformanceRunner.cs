@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class DictionaryPerformanceRunner
     {
         private const int Size = 1000000;

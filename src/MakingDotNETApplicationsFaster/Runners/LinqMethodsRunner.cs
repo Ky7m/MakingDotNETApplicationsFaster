@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class LinqMethodsRunner
     {
         private readonly int[] _array;

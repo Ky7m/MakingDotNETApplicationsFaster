@@ -7,6 +7,7 @@ using ZeroFormatter;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class SerializersPerformanceRunner
     {
         private readonly Summary _summary;

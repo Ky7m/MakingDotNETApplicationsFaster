@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class CompareStringsRunner
     {
         // use no string literals, which would be interned, placed in the executable.

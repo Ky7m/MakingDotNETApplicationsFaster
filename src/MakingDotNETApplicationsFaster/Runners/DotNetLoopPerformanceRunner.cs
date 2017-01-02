@@ -31,6 +31,18 @@ namespace MakingDotNETApplicationsFaster.Runners
         }
 
         [Benchmark]
+        public long BaselineLoopIndexPrefix()
+        {
+            long sum = 0;
+            for (var i = 0; i < _array.Length; ++i)
+            {
+                sum += _array[i];
+            }
+            return sum;
+
+        }
+
+        [Benchmark]
         public long GetSumWhile()
         {
             long sum = 0;

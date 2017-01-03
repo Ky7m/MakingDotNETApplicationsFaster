@@ -3,6 +3,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
+    [Config(typeof(CoreConfig))]
     public class SwitchVsIfOperatorsRunner
     {
         [Params(1, 2, 3, 4, 5, 7, 10, 13, 15, 17, 20, 21)]

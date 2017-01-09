@@ -190,5 +190,21 @@ namespace MakingDotNETApplicationsFaster.Runners
 
             return sum;
         }
+
+        [Benchmark]
+        public long GetSumWithGoToOperator()
+        {
+            long sum = 0;
+            var i = 0;
+            next:
+            if (i < ArrayLength)
+            {
+                sum+=_array[i];
+                i++;
+                goto next;
+            }
+
+            return sum;
+        }
     }
 }

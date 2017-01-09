@@ -1,18 +1,33 @@
-﻿using System;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MakingDotNETApplicationsFaster.Runners
 {
     [Config(typeof(CoreConfig))]
-    public class SwitchVsIfOperatorsRunner
+    public class SwitchVsIfOperatorsForIntRunner
     {
-        [Params(1, 2, 3, 4, 5, 7, 10, 13, 15, 17, 20, 21)]
+        [Params(1, 3, 5, 10, 15, 20)]
         public int Input;
 
-        //Method is just for small delay during argument's comparison
-        private int InputRecalculate(int input)
+        private readonly Dictionary<int, int> _keyValues;
+
+        public SwitchVsIfOperatorsForIntRunner()
         {
-            return (int)Math.Round(input/1.0);
+            var values = Enumerable.Range(1, 51).ToList();
+
+            _keyValues = new Dictionary<int, int>();
+
+            for (var index = 0; index < values.Count; ++index)
+            {
+                if (index == values.Count - 1)
+                {
+                    _keyValues.Add(values[index], 0);
+                    break;
+                }
+
+                _keyValues.Add(values[index], values[index]);
+            }
         }
 
         [Benchmark]
@@ -20,26 +35,26 @@ namespace MakingDotNETApplicationsFaster.Runners
         {
             int result = 0;
 
-            if (InputRecalculate(Input) == 1 |
-                InputRecalculate(Input) == 2 |
-                InputRecalculate(Input) == 3 |
-                InputRecalculate(Input) == 4 |
-                InputRecalculate(Input) == 5 |
-                InputRecalculate(Input) == 6 |
-                InputRecalculate(Input) == 7 |
-                InputRecalculate(Input) == 8 |
-                InputRecalculate(Input) == 9 |
-                InputRecalculate(Input) == 10 |
-                InputRecalculate(Input) == 11 |
-                InputRecalculate(Input) == 12 |
-                InputRecalculate(Input) == 13 |
-                InputRecalculate(Input) == 14 |
-                InputRecalculate(Input) == 15 |
-                InputRecalculate(Input) == 16 |
-                InputRecalculate(Input) == 17 |
-                InputRecalculate(Input) == 18 |
-                InputRecalculate(Input) == 19 |
-                InputRecalculate(Input) == 20)
+            if (Input == 1 |
+                Input == 2 |
+                Input == 3 |
+                Input == 4 |
+                Input == 5 |
+                Input == 6 |
+                Input == 7 |
+                Input == 8 |
+                Input == 9 |
+                Input == 10 |
+                Input == 11 |
+                Input == 12 |
+                Input == 13 |
+                Input == 14 |
+                Input == 15 |
+                Input == 16 |
+                Input == 17 |
+                Input == 18 |
+                Input == 19 |
+                Input == 20)
             {
                 result = Input;
             }
@@ -52,26 +67,26 @@ namespace MakingDotNETApplicationsFaster.Runners
         {
             int result = 0;
 
-            if (InputRecalculate(Input) == 1 ||
-                InputRecalculate(Input) == 2 ||
-                InputRecalculate(Input) == 3 ||
-                InputRecalculate(Input) == 4 ||
-                InputRecalculate(Input) == 5 ||
-                InputRecalculate(Input) == 6 ||
-                InputRecalculate(Input) == 7 ||
-                InputRecalculate(Input) == 8 ||
-                InputRecalculate(Input) == 9 ||
-                InputRecalculate(Input) == 10 ||
-                InputRecalculate(Input) == 11 ||
-                InputRecalculate(Input) == 12 ||
-                InputRecalculate(Input) == 13 ||
-                InputRecalculate(Input) == 14 ||
-                InputRecalculate(Input) == 15 ||
-                InputRecalculate(Input) == 16 ||
-                InputRecalculate(Input) == 17 ||
-                InputRecalculate(Input) == 18 ||
-                InputRecalculate(Input) == 19 ||
-                InputRecalculate(Input) == 20)
+            if (Input == 1 ||
+                Input == 2 ||
+                Input == 3 ||
+                Input == 4 ||
+                Input == 5 ||
+                Input == 6 ||
+                Input == 7 ||
+                Input == 8 ||
+                Input == 9 ||
+                Input == 10 ||
+                Input == 11 ||
+                Input == 12 ||
+                Input == 13 ||
+                Input == 14 ||
+                Input == 15 ||
+                Input == 16 ||
+                Input == 17 ||
+                Input == 18 ||
+                Input == 19 ||
+                Input == 20)
             {
                 result = Input;
             }
@@ -84,83 +99,83 @@ namespace MakingDotNETApplicationsFaster.Runners
         {
             int result;
 
-            if (InputRecalculate(Input) == 1)
+            if (Input == 1)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 2)
+            else if (Input == 2)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 3)
+            else if (Input == 3)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 4)
+            else if (Input == 4)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 5)
+            else if (Input == 5)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 6)
+            else if (Input == 6)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 7)
+            else if (Input == 7)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 8)
+            else if (Input == 8)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 9)
+            else if (Input == 9)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 10)
+            else if (Input == 10)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 11)
+            else if (Input == 11)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 12)
+            else if (Input == 12)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 13)
+            else if (Input == 13)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 14)
+            else if (Input == 14)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 15)
+            else if (Input == 15)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 16)
+            else if (Input == 16)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 17)
+            else if (Input == 17)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 18)
+            else if (Input == 18)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 19)
+            else if (Input == 19)
             {
                 result = Input;
             }
-            else if (InputRecalculate(Input) == 20)
+            else if (Input == 20)
             {
                 result = Input;
             }
@@ -177,7 +192,7 @@ namespace MakingDotNETApplicationsFaster.Runners
         {
             int result;
 
-            switch (InputRecalculate(Input))
+            switch (Input)
             {
                 case 1:
                     result = Input;
@@ -245,6 +260,21 @@ namespace MakingDotNETApplicationsFaster.Runners
             }
 
             return result;
+        }
+
+
+        [Benchmark]
+        public int TryGetValueFromDictionary()
+        {
+            int result;
+
+            return _keyValues.TryGetValue(Input, out result) ? result : 0;
+        }
+
+        [Benchmark]
+        public int GetValueFromDictionary()
+        {
+            return _keyValues[Input];
         }
     }
 }

@@ -270,11 +270,5 @@ namespace MakingDotNETApplicationsFaster.Runners
 
             return _keyValues.TryGetValue(Input, out result) ? result : 0;
         }
-
-        [Benchmark]
-        public int GetValueFromDictionary()
-        {
-            return _keyValues[Input];
-        }
     }
 }

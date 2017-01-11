@@ -7,7 +7,7 @@ namespace MakingDotNETApplicationsFaster.Runners
     [Config(typeof(CoreConfig))]
     public class SwitchVsIfOperatorsForStringRunner
     {
-        [Params(3, 5, 7, 50)]
+        [Params(3, 5, 10, 25, 50)]
         public int Input;
 
         private readonly Dictionary<string, int> _keyValues;
@@ -509,12 +509,6 @@ namespace MakingDotNETApplicationsFaster.Runners
             int result;
 
             return _keyValues.TryGetValue(Input.ToString(), out result) ? result : 0;
-        }
-
-        [Benchmark]
-        public int GetValueFromDictionary()
-        {
-            return _keyValues[Input.ToString()];
         }
     }
 }

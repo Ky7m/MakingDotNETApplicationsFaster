@@ -8,6 +8,8 @@ namespace MakingDotNETApplicationsFaster.Runners
     public class DotNetLoopPerformanceRunner
     {
         private const int ArrayLength = 10000;
+        private int ArrayIndex = ArrayLength;
+
         private readonly int[] _array;
         private readonly List<int> _list;
 
@@ -205,6 +207,17 @@ namespace MakingDotNETApplicationsFaster.Runners
             }
 
             return sum;
+        }
+
+        [Benchmark]
+        public long GetSumOfRecursion()
+        {
+            if (ArrayIndex <= 0)
+            {
+                return 0;
+            }
+
+            return _array[--ArrayIndex] + GetSumOfRecursion();
         }
     }
 }

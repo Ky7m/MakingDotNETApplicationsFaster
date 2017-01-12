@@ -8,34 +8,68 @@ namespace MakingDotNETApplicationsFaster.Runners
     public class LinqMethodsRunner
     {
         private readonly int[] _array;
+        private readonly List<int> _list;
         private readonly IEnumerable<int> _range;
+
+        private const int Value = 100;
 
         public LinqMethodsRunner()
         {
             _range = Enumerable.Range(0, 100000);
             _array = _range.ToArray();
+            _list = _range.ToList();
         }
 
         [Benchmark]
-        public int FirstOrDefault()
+        public int FindForList()
         {
-            return _array.FirstOrDefault(x => x == 100);
+            return _list.Find(x => x == Value);
         }
 
         [Benchmark]
-        public int SingleOrDefault()
+        public int FirstOrDefaultForList()
         {
-            return _array.SingleOrDefault(x => x == 100);
+            return _list.FirstOrDefault(x => x == Value);
         }
 
         [Benchmark]
-        public int[] ToArray()
+        public int FirstOrDefaultForArray()
+        {
+            return _array.FirstOrDefault(x => x == Value);
+        }
+
+        [Benchmark]
+        public int SingleOrDefaultForList()
+        {
+            return _list.SingleOrDefault(x => x == Value);
+        }
+
+        [Benchmark]
+        public int SingleOrDefaultForArray()
+        {
+            return _array.SingleOrDefault(x => x == Value);
+        }
+
+        [Benchmark]
+        public int[] ListToArray()
+        {
+            return _list.ToArray();
+        }
+
+        [Benchmark]
+        public List<int> ArrayToList()
+        {
+            return _array.ToList();
+        }
+
+        [Benchmark]
+        public int[] EnumerableToArray()
         {
             return _range.ToArray();
         }
 
         [Benchmark]
-        public List<int> ToList()
+        public List<int> EnumerableToList()
         {
             return _range.ToList();
         }
@@ -56,6 +90,18 @@ namespace MakingDotNETApplicationsFaster.Runners
         public bool Count()
         {
             return _array.Count() > 0;
+        }
+
+        [Benchmark]
+        public List<int> WhereForList()
+        {
+            return _list.Where(x => x > Value).ToList();
+        }
+
+        [Benchmark]
+        public List<int> FindAllForList()
+        {
+            return _list.FindAll(x => x > Value);
         }
     }
 }

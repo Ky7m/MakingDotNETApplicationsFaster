@@ -16,8 +16,7 @@
             "type": "platform"
         },
       "Wire": "0.8.2",
-"ZeroFormatter": "1.5.7"
-    },
+"ZeroFormatter": "1.6.0"    },
   "frameworks": {
     "netcoreapp1.1": {
       "imports": "dnxcore50"

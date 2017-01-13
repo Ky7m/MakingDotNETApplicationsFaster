@@ -226,5 +226,22 @@ namespace MakingDotNETApplicationsFaster.Runners
 
             return _array[--_arrayIndex] + GetSumRecursively();
         }
+
+        [Benchmark]
+        public long GetSumOfTailRecursion()
+        {
+            _arrayIndex = ArrayLength - 1;
+            return GetSumOfTailRecursionInternal(0, _arrayIndex);
+        }
+
+        private long GetSumOfTailRecursionInternal(long sum, int index)
+        {
+            if (index < 0)
+            {
+                return sum;
+            }
+
+            return GetSumOfTailRecursionInternal(sum + _array[index], index - 1);
+        }
     }
 }

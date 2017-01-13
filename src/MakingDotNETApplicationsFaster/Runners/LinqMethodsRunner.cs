@@ -21,6 +21,20 @@ namespace MakingDotNETApplicationsFaster.Runners
         }
 
         [Benchmark]
+        public int FindByForeachForList()
+        {
+            foreach (var val in _list)
+            {
+                if (val == Value)
+                {
+                    return val;
+                }
+            }
+
+            return 0;
+        }
+
+        [Benchmark]
         public int FindForList()
         {
             return _list.Find(x => x == Value);

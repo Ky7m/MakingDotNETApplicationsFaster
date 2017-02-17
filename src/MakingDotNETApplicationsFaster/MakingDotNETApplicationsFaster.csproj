@@ -18,9 +18,9 @@
   <ItemGroup>
     <PackageReference Include="FastMember" Version="1.1.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
-    <PackageReference Include="BenchmarkDotNet" Version="0.10.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.10.2" />
     <PackageReference Include="Wire" Version="0.8.2" />
-    <PackageReference Include="ZeroFormatter" Version="1.6.0" />
+    <PackageReference Include="ZeroFormatter" Version="1.6.2" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.2-beta2" />
   </ItemGroup>
 

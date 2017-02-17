@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>portable</DebugType>
+    <AssemblyName>MakingDotNETApplicationsFaster</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>MakingDotNETApplicationsFaster</PackageId>
+    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastMember" Version="1.1.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.10.1" />
+    <PackageReference Include="Wire" Version="0.8.2" />
+    <PackageReference Include="ZeroFormatter" Version="1.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.2-beta2" />
+  </ItemGroup>
+
+</Project>

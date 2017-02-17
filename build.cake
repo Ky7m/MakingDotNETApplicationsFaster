@@ -10,11 +10,7 @@ Task("Restore")
     .IsDependentOn("Restore")
     .Does(() =>
     {
-        var projects = GetFiles("./**/*.xproj");
-        foreach(var project in projects)
-        {
-            DotNetCoreBuild(project.GetDirectory().FullPath);
-        }
+        DotNetCoreBuild("./MakingDotNETApplicationsFaster.sln");
     });
 
 Task("Default")

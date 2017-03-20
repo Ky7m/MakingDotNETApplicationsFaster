@@ -7,7 +7,7 @@ namespace MakingDotNETApplicationsFaster
     {
         public static void Main()
         {
-            BenchmarkRunner.Run<StructEqualityRunner>();
+            BenchmarkRunner.Run<JaggedArraysVersus2DArraysRunner>();
         }
     }
 }

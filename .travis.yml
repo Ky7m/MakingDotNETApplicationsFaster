@@ -33,5 +33,5 @@ script:
   - ./build.sh
 cache:
   directories:
-    - src/packages
+    - packages
     - tools

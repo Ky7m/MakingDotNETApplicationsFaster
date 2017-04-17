@@ -21,7 +21,7 @@
     <PackageReference Include="BenchmarkDotNet" Version="0.10.3" />
     <PackageReference Include="Wire" Version="0.8.2" />
     <PackageReference Include="ZeroFormatter" Version="1.6.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.1-beta1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>
 
 </Project>

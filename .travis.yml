@@ -31,7 +31,3 @@ mono:
   - 4.6.0
 script:
   - ./build.sh
-cache:
-  directories:
-    - packages
-    - tools

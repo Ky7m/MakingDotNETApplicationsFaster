@@ -20,7 +20,7 @@ namespace MakingDotNETApplicationsFaster.Runners
 
         private Type _type ;
 
-        [Setup]
+        [GlobalSetup]
         public void SetupData()
         {
             _obj = new FastMemberPerformanceRunner();

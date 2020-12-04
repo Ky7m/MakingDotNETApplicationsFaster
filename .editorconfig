@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# U2U1004: Public value types should implement equality
+dotnet_diagnostic.U2U1004.severity = warning

@@ -7,7 +7,7 @@ namespace MakingDotNETApplicationsFaster
     {
         public static void Main()
         {
-            BenchmarkRunner.Run<ReflectionMethodInvokeVsInterfaceRunner>();
+            BenchmarkRunner.Run<SetStructVsRefSetStruct>();
         }
     }
 }

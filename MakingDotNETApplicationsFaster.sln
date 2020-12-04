@@ -7,14 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2854B3D4-600
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBB7A088-CEDC-45E1-99C3-45A003256CF5}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		build.cake = build.cake
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakingDotNETApplicationsFaster", "src\MakingDotNETApplicationsFaster\MakingDotNETApplicationsFaster.csproj", "{1958193D-017D-4CEA-9E10-9DD488E078E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionExtension", "ReflectionExtension\ReflectionExtension.csproj", "{0A2F14E5-B903-4CB2-B26D-4B73E04D1D03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionExtension", "ReflectionExtension\ReflectionExtension.csproj", "{0A2F14E5-B903-4CB2-B26D-4B73E04D1D03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionInterface", "ReflectionInterface\ReflectionInterface.csproj", "{3D119DBA-BF97-409D-89E8-F5EDE6329226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionInterface", "ReflectionInterface\ReflectionInterface.csproj", "{3D119DBA-BF97-409D-89E8-F5EDE6329226}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

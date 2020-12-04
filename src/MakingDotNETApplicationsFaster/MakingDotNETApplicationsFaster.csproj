@@ -9,6 +9,9 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.10.9" />
     <PackageReference Include="FastMember" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />

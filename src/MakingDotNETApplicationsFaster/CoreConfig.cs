@@ -1,14 +1,10 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using BenchmarkDotNet.Configs;
-using BenchmarkDotNet.Diagnosers;
-using BenchmarkDotNet.Engines;
-using BenchmarkDotNet.Environments;
-using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-using BenchmarkDotNet.Validators;
 
 namespace MakingDotNETApplicationsFaster
 {
@@ -16,31 +12,40 @@ namespace MakingDotNETApplicationsFaster
     {
         public CoreConfig()
         {
-            Add(JitOptimizationsValidator.FailOnError);
-            Add(MemoryDiagnoser.Default);
-
-            Add(Job.Default
-                .With(Runtime.Core)
-                .WithRemoveOutliers(false)
-                .With(new GcMode { Server = true })
-                .With(RunStrategy.Throughput)
-                .WithLaunchCount(3)
-                .WithWarmupCount(5)
-                .WithTargetCount(10));
-
-            Set(new FastestToSlowestOrderProvider());
+            Orderer = new FastestToSlowestOrderer();
         }
-
-        private class FastestToSlowestOrderProvider : IOrderProvider
+        
+        private class FastestToSlowestOrderer : IOrderer
         {
-            public IEnumerable<Benchmark> GetExecutionOrder(Benchmark[] benchmarks) => benchmarks;
-
-            public IEnumerable<Benchmark> GetSummaryOrder(Benchmark[] benchmarks, Summary summary) =>
-                from benchmark in benchmarks
-                orderby summary[benchmark]?.ResultStatistics?.Median
+            public IEnumerable<BenchmarkCase> GetExecutionOrder(ImmutableArray<BenchmarkCase> benchmarksCase) =>
+                from benchmark in benchmarksCase
+                orderby benchmark.Parameters["X"] descending,
+                    benchmark.Descriptor.WorkloadMethodDisplayInfo
                 select benchmark;
 
-            public string GetGroupKey(Benchmark benchmark, Summary summary) => null;
+            IEnumerable<BenchmarkCase> IOrderer.GetSummaryOrder(ImmutableArray<BenchmarkCase> benchmarksCases, Summary summary)
+            {
+                return GetSummaryOrder(benchmarksCases, summary);
+            }
+
+            public IEnumerable<BenchmarkCase> GetSummaryOrder(ImmutableArray<BenchmarkCase> benchmarksCase, Summary summary) =>
+                from benchmark in benchmarksCase
+                orderby summary[benchmark].ResultStatistics.Mean
+                select benchmark;
+
+            public string GetHighlightGroupKey(BenchmarkCase benchmarkCase) => null;
+            string IOrderer.GetLogicalGroupKey(ImmutableArray<BenchmarkCase> allBenchmarksCases, BenchmarkCase benchmarkCase)
+            {
+                return GetLogicalGroupKey(allBenchmarksCases, benchmarkCase);
+            }
+
+            public string GetLogicalGroupKey(ImmutableArray<BenchmarkCase> allBenchmarksCases, BenchmarkCase benchmarkCase) =>
+                benchmarkCase.Job.DisplayInfo + "_" + benchmarkCase.Parameters.DisplayInfo;
+
+            public IEnumerable<IGrouping<string, BenchmarkCase>> GetLogicalGroupOrder(IEnumerable<IGrouping<string, BenchmarkCase>> logicalGroups) =>
+                logicalGroups.OrderBy(it => it.Key);
+
+            public bool SeparateLogicalGroups => true;
         }
     }
 }

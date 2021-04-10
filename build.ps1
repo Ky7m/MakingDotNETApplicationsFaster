@@ -16,7 +16,7 @@ No tasks will be executed.
 .PARAMETER ScriptArgs
 Remaining arguments are added here.
 .LINK
-http://cakebuild.net
+https://cakebuild.net
 #>
 
 [CmdletBinding()]
@@ -31,10 +31,13 @@ Param(
     [string[]]$ScriptArgs
 )
 
-$CakeVersion = "0.19.5"
-$DotNetInstallerUri = "https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1";
-$DotNetVersion = "2.0.0-preview1-005977";
+$CakeVersion = "1.1.0"
+$DotNetVersion = "5.0.202";
+$DotNetInstallerUri = "https://dot.net/v1/dotnet-install.ps1";
 $NugetUrl = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+
+# SSL FIX
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12;
 
 # Make sure tools folder exists
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
@@ -77,13 +80,15 @@ if($FoundDotNetCliVersion -ne $DotNetVersion) {
         mkdir -Force $InstallPath | Out-Null;
     }
     (New-Object System.Net.WebClient).DownloadFile($DotNetInstallerUri, "$InstallPath\dotnet-install.ps1");
-    & $InstallPath\dotnet-install.ps1 -Version $DotNetVersion -InstallDir $InstallPath;
+    & $InstallPath\dotnet-install.ps1 -Channel $DotNetChannel -Version $DotNetVersion -InstallDir $InstallPath;
 
     Remove-PathVariable "$InstallPath"
     $env:PATH = "$InstallPath;$env:PATH"
-    $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-    $env:DOTNET_CLI_TELEMETRY_OPTOUT=1
 }
+
+$env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+$env:DOTNET_CLI_TELEMETRY_OPTOUT=1
+$env:DOTNET_MULTILEVEL_LOOKUP=0
 
 ###########################################################################
 # INSTALL NUGET
@@ -106,7 +111,7 @@ if (!(Test-Path $CakePath)) {
     Write-Host "Installing Cake..."
     Invoke-Expression "&`"$NugetPath`" install Cake -Version $CakeVersion -OutputDirectory `"$ToolPath`"" | Out-Null;
     if ($LASTEXITCODE -ne 0) {
-        Throw "An error occured while restoring Cake from NuGet."
+        Throw "An error occurred while restoring Cake from NuGet."
     }
 }
 

@@ -20,13 +20,13 @@ branches:
     - release
     - develop
     - /^(.*\/)?ci-.*$/
-osx_image: xcode8.3
+osx_image: xcode12.2
 env:
   global:
     - DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
     - DOTNET_CLI_TELEMETRY_OPTOUT: 1
 mono:  
-  - 5.0.0
+  - latest
 script:
   - ./build.sh
 cache:
